@@ -22,7 +22,7 @@ const articles = [
     author: "Dr. Sarah Ahmed",
     date: "January 2, 2026",
     readTime: "8 min read",
-    image: "/blog-sadaqah-jariyah.jpg",
+    image: "/blog-sadaqah-jariyah.svg",
   },
   {
     title: "How to Choose the Right Charity Construction Project",
@@ -33,7 +33,7 @@ const articles = [
     author: "Michael Chen",
     date: "December 28, 2025",
     readTime: "12 min read",
-    image: "/blog-choosing-project.jpg",
+    image: "/blog-choosing-project.svg",
   },
   {
     title: "The True Cost of Building a Mosque: Transparent Breakdown",
@@ -44,7 +44,7 @@ const articles = [
     author: "Hassan Ibrahim",
     date: "December 20, 2025",
     readTime: "10 min read",
-    image: "/blog-mosque-costs.jpg",
+    image: "/blog-mosque-costs.svg",
   },
   {
     title: "Water Wells That Last: Engineering for Long-Term Impact",
@@ -55,7 +55,7 @@ const articles = [
     author: "Dr. Fatima Osman",
     date: "December 15, 2025",
     readTime: "6 min read",
-    image: "/blog-water-wells.jpg",
+    image: "/blog-water-wells.svg",
   },
   {
     title: "Community-Centered Design: Why Local Input Matters",
@@ -66,7 +66,7 @@ const articles = [
     author: "Ahmed Nasser",
     date: "December 10, 2025",
     readTime: "7 min read",
-    image: "/blog-community-design.jpg",
+    image: "/blog-community-design.svg",
   },
   {
     title: "From Urban to Rural: Adapting Projects to Local Contexts",
@@ -77,7 +77,7 @@ const articles = [
     author: "Aisha Mohammed",
     date: "December 5, 2025",
     readTime: "9 min read",
-    image: "/blog-urban-rural.jpg",
+    image: "/blog-urban-rural.svg",
   },
 ]
 

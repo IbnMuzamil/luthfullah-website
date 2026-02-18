@@ -9,6 +9,7 @@ import Image from "next/image"
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(0)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -20,6 +21,15 @@ export function HeroSection() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    // Set initial window width and update on resize in a client-safe way
+    if (typeof window === "undefined") return
+    setWindowWidth(window.innerWidth)
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   useEffect(() => {
@@ -204,10 +214,10 @@ export function HeroSection() {
             className={`relative mt-8 lg:mt-0 transition-all duration-1000 delay-500 ${
               isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-12 scale-95"
             }`}
-            style={{
-              transform:
-                window.innerWidth > 768 ? `translateY(${scrollY * -0.1}px) rotateY(${scrollY * 0.02}deg)` : undefined,
-            }}
+              style={{
+                transform:
+                  windowWidth > 768 ? `translateY(${scrollY * -0.1}px) rotateY(${scrollY * 0.02}deg)` : undefined,
+              }}
           >
             {/* Decorative elements */}
             <div className="absolute -top-4 md:-top-6 -left-4 md:-left-6 w-20 md:w-32 h-20 md:h-32 bg-gold/30 rounded-full blur-2xl animate-pulse" />

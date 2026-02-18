@@ -23,7 +23,7 @@ const completedProjects = [
     beneficiaries: "500+ families",
     description:
       "A beautiful community mosque serving 5 daily prayers with dedicated spaces for education and community gatherings. Features include prayer hall, ablution facilities, library, and open courtyard.",
-    image: "/completed-mosque-kenya.jpg",
+    image: "/completed-mosque-kenya.svg",
     impact: "Serves as spiritual center for entire neighborhood, hosts Quran classes for 80+ children weekly",
   },
   {
@@ -35,7 +35,7 @@ const completedProjects = [
     beneficiaries: "250 students",
     description:
       "Modern primary school with 8 classrooms, library, computer lab, and playground. Built to provide quality education to underserved community with focus on girls' education.",
-    image: "/completed-school-bangladesh.jpg",
+    image: "/completed-school-bangladesh.svg",
     impact: "250 students enrolled in first year, 60% girls. Free education and lunch program implemented",
   },
   {
@@ -47,7 +47,7 @@ const completedProjects = [
     beneficiaries: "1,200+ people",
     description:
       "Deep water well with solar-powered pump system providing clean drinking water to remote village. Includes storage tank and distribution points.",
-    image: "/completed-water-ethiopia.jpg",
+    image: "/completed-water-ethiopia.svg",
     impact: "Eliminated 3-hour daily water collection trips, reduced waterborne diseases by 75% in first 6 months",
   },
 ]
