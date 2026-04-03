@@ -1,0 +1,72 @@
+{
+  "header": {
+    "brandName": "LUTHFULLAH",
+    "logoAlt": "Luthfullah Logo",
+    "navLinks": [
+      {
+        "label": "What We Build",
+        "href": "/what-we-build"
+      },
+      {
+        "label": "How It Works",
+        "href": "/how-it-works"
+      },
+      {
+        "label": "Impact",
+        "href": "/impact"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      }
+    ]
+  },
+  "hero": {
+    "badgeText": "Trusted by thousands of donors worldwide",
+    "headline": "Transform Charity Into",
+    "headlineHighlight": "Eternal Legacy",
+    "subheadline": "We orchestrate world-class charity construction projects with unwavering transparency, precision, and trust. Build mosques, schools, and community centers that serve generations.",
+    "ctaPrimary": "Start Your Legacy Project",
+    "ctaSecondary": "Discover Our Process",
+    "stats": [
+      {
+        "value": "20+",
+        "label": "Projects Completed"
+      },
+      {
+        "value": "45",
+        "label": "Countries Served"
+      },
+      {
+        "value": "100%",
+        "label": "Transparent"
+      }
+    ]
+  },
+  "footer": {
+    "copyrightText": "© 2026 Luthfullah. All rights reserved.",
+    "links": [
+      {
+        "label": "Contact",
+        "href": "/contact"
+      },
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms"
+      }
+    ]
+  },
+  "theme": {
+    "primaryColor": "#3B82F6",
+    "secondaryColor": "#FF6B6B",
+    "accentColor": "#4F46E5"
+  }
+}

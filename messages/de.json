@@ -1,0 +1,102 @@
+{
+  "navigation": {
+    "about": "Über uns",
+    "whatWeBuild": "Was wir bauen",
+    "howItWorks": "So funktioniert's",
+    "impact": "Wirkung",
+    "resources": "Ressourcen",
+    "contact": "Kontakt",
+    "startProject": "Projekt starten"
+  },
+  "home": {
+    "hero": {
+      "badgeText": "Tausende Spender weltweit vertrauen uns",
+      "tagline": "Globale Legacy-Projekte",
+      "brand": "LUTHFULLAH",
+      "headline": "Verwandeln Sie Wohltätigkeit in",
+      "headlineHighlight": "Ewiges Erbe",
+      "subheadline": "Wir koordinieren erstklassige Wohltätigkeitsprojekte mit unerschütterlicher Transparenz, Präzision und Vertrauen. Wir bauen Moscheen, Schulen und Gemeindezentren, die Generationen dienen.",
+      "ctaPrimary": "Starten Sie Ihr Erbe-Projekt",
+      "ctaSecondary": "Entdecken Sie unseren Prozess"
+    },
+    "stats": {
+      "projects": "Abgeschlossene Projekte",
+      "countries": "Bediente Länder",
+      "transparent": "Transparent"
+    }
+  },
+  "howItWorks": {
+    "headline": "Einfacher, transparenter Prozess",
+    "subheadline": "In drei klaren Schritten von der Vision zur Realität",
+    "cta": "Erfahren Sie mehr über unseren Prozess",
+    "steps": {
+      "step1": {
+        "title": "Wählen Sie Ihr Projekt",
+        "description": "Wählen Sie aus Moscheen, Schulen, Gemeindezentren, Wasseranlagen oder individuellen Projekten."
+      },
+      "step2": {
+        "title": "Wir bauen & überwachen",
+        "description": "Unsere vertrauenswürdigen Teams übernehmen den Bau mit regelmäßigen Updates und voller Transparenz."
+      },
+      "step3": {
+        "title": "Wirkung erzielt",
+        "description": "Erhalten Sie Abschlussberichte mit Fotos, GPS-Koordinaten und dauerhafter Wirkung."
+      }
+    }
+  },
+  "projects": {
+    "headline": "Unsere Projekte",
+    "subheadline": "Reale Wirkung durch Qualitätsbau und gemeinschaftsorientierte Infrastruktur",
+    "categories": {
+      "mosques": "Moscheen",
+      "schools": "Schulen",
+      "communityCenters": "Gemeindezentren",
+      "waterSanitation": "Wasser & Sanitär",
+      "shelters": "Unterkünfte"
+    },
+    "addToCart": "In den Warenkorb",
+    "inCart": "Im Warenkorb",
+    "cost": "Kosten"
+  },
+  "footer": {
+    "description": "Wir helfen Einzelpersonen, Familien und Organisationen beim Aufbau einer dauerhaften Infrastruktur, die Gemeinschaften durch transparenten, vertrauenswürdigen Wohltätigkeitsbau transformiert.",
+    "company": "Unternehmen",
+    "sectors": "Sektoren",
+    "resources": "Ressourcen",
+    "copyright": "© 2026 LUTHFULLAH. GLOBALE WIRKUNGSMASCHINE."
+  },
+  "about": {
+    "headline": "Vertrauen aufbauen, Wirkung erzielen",
+    "subheadline": "Wir sind dazu da, wohltätige Absichten in echte, fertige Infrastruktur zu verwandeln, die Gemeinschaften über Generationen hinweg dient.",
+    "mission": {
+      "title": "Unsere Mission",
+      "content": "Den Bau für wohltätige Zwecke zu vereinfachen, indem wir End-to-End-Projekte für Spender verwalten und sicherstellen, dass jeder Dollar klug, transparent und effektiv eingesetzt wird, um eine dauerhafte Infrastruktur zu schaffen, die Gemeinschaften transformiert."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "content": "Eine Welt, in der der Bau für wohltätige Zwecke vertrauenswürdig, zugänglich und wirkungsvoll ist – in der jeder Spender zuversichtlich eine Infrastruktur aufbauen kann, die Chancen, Würde und dauerhafte Veränderungen für Generationen schafft."
+    }
+  },
+  "cart": {
+    "title": "Ihre Auswahl",
+    "empty": "Ihre Auswahl ist leer",
+    "remove": "Entfernen",
+    "subtotal": "Zwischensumme",
+    "checkout": "Zur Kasse gehen",
+    "itemCount": "{count} {count, plural, one {Artikel} other {Artikel}}"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "contactDetails": "Kontaktdaten",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "paymentMethod": "Zahlungsmethode",
+    "stripe": "Stripe (Global)",
+    "paystack": "Paystack (Afrika)",
+    "orderSummary": "Bestellübersicht",
+    "placeOrder": "Bestellung aufgeben",
+    "emptyCartMessage": "Ihr Warenkorb ist leer. Bitte fügen Sie einige Projekte hinzu, um fortzufahren.",
+    "returnToProjects": "Zurück zu den Projekten"
+  }
+}

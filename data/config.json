@@ -1,0 +1,81 @@
+{
+  "header": {
+    "brandName": "LUTHFULLAH",
+    "tagline": "Building Hope Together",
+    "logoUrl": "/uploads/2eb3e5cf-dc00-45be-bc4d-46d4c20a3359.png",
+    "logoAlt": "Luthfullah Logo",
+    "navLinks": [
+      {
+        "label": "What We Build",
+        "href": "/what-we-build"
+      },
+      {
+        "label": "How It Works",
+        "href": "/how-it-works"
+      },
+      {
+        "label": "Impact",
+        "href": "/impact"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      }
+    ]
+  },
+  "faviconUrl": "/uploads/2eb3e5cf-dc00-45be-bc4d-46d4c20a3359.png",
+  "contactInfo": {
+    "email": "info@luthfullah.com",
+    "phone": "+49 1521 9197474",
+    "address": "Germany"
+  },
+  "hero": {
+    "badgeText": "Trusted by thousands of donors worldwide",
+    "headline": "Transform Charity Into",
+    "headlineHighlight": "Eternal Legacy",
+    "subheadline": "We orchestrate world-class charity construction projects with unwavering transparency, precision, and trust. Build mosques, schools, and community centers that serve generations.",
+    "ctaPrimary": "Start Your Legacy Project",
+    "ctaSecondary": "Discover Our Process",
+    "stats": [
+      {
+        "value": "250+",
+        "label": "Projects Completed"
+      },
+      {
+        "value": "45",
+        "label": "Countries Served"
+      },
+      {
+        "value": "100%",
+        "label": "Transparent"
+      }
+    ]
+  },
+  "footer": {
+    "copyrightText": "© 2026 Luthfullah. All rights reserved.",
+    "description": "Helping individuals, families, and organizations build lasting infrastructure that transforms communities through transparent, trusted charity construction.",
+    "links": [
+      {
+        "label": "Contact",
+        "href": "/contact"
+      },
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms"
+      }
+    ]
+  },
+  "theme": {
+    "primaryColor": "#0052FF",
+    "secondaryColor": "#F8FAFC",
+    "accentColor": "#00D1FF"
+  }
+}

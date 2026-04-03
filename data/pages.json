@@ -1,0 +1,151 @@
+{
+  "index": {
+    "hero": {
+      "badgeText": "Trusted by thousands of donors worldwide",
+      "brandName": "LUTHFULLAH",
+      "headline": "Transform Charity Into",
+      "headlineHighlight": "Eternal Legacy",
+      "subheadline": "We orchestrate world-class charity construction projects with unwavering transparency, precision, and trust. Build mosques, schools, and community centers that serve generations.",
+      "ctaPrimary": "Start Your Legacy Project",
+      "ctaSecondary": "Discover Our Process",
+      "imageUrl": "/uploads/ebb0650e-9be0-47ff-8738-099ff085038b.jpeg",
+      "stats": [
+        {
+          "value": "250+",
+          "label": "Projects Completed"
+        },
+        {
+          "value": "45",
+          "label": "Countries Served"
+        },
+        {
+          "value": "100%",
+          "label": "Transparent"
+        }
+      ]
+    }
+  },
+  "about": {
+    "headline": "Building Trust, Delivering Impact",
+    "subheadline": "We exist to transform charitable intentions into real, completed infrastructure that serves communities for generations to come.",
+    "mission": {
+      "title": "Our Mission",
+      "content": "To simplify charity construction by managing end-to-end projects for donors, ensuring every dollar is used wisely, transparently, and effectively to create lasting infrastructure that transforms communities."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "A world where charitable construction is trusted, accessible, and impactful - where every donor can confidently build infrastructure that creates opportunity, dignity, and lasting change for generations."
+    },
+    "values": [
+      {
+        "title": "Transparency",
+        "content": "Complete visibility into costs, progress, and impact. Every donor receives detailed reporting with photos, GPS coordinates, and financial breakdowns.",
+        "icon": "Shield"
+      },
+      {
+        "title": "Frugality",
+        "content": "We minimize costs without compromising quality, ensuring maximum impact from every donation through careful planning and local partnerships.",
+        "icon": "Heart"
+      },
+      {
+        "title": "Community Focus",
+        "content": "We work closely with local communities to ensure projects meet real needs and create lasting positive change beyond the initial construction.",
+        "icon": "Users"
+      }
+    ],
+    "approach": [
+      {
+        "title": "Frugal Operations",
+        "content": "We keep overhead costs minimal by leveraging technology, building strong local partnerships, and focusing on efficient project management."
+      },
+      {
+        "title": "Complete Transparency",
+        "content": "Every donor receives detailed project reports including itemized budgets, construction timelines, milestone updates with photos, and GPS coordinates."
+      }
+    ]
+  },
+  "what-we-build": {
+    "headline": "Infrastructure for Lasting Impact",
+    "subheadline": "From spiritual centers to educational facilities, we build infrastructure that serves communities for generations",
+    "projects": [
+      {
+        "icon": "Building2",
+        "title": "Mosques",
+        "description": "Build places of worship that serve as spiritual centers for entire communities, creating spaces for prayer, learning, and gathering.",
+        "benefits": [
+          "Complete architectural planning and design",
+          "Prayer halls, ablution facilities, and courtyards",
+          "Quality construction built to last generations"
+        ],
+        "impact": "Ongoing spiritual benefit (Sadaqah Jariyah) for donors and vital community infrastructure",
+        "image": "/beautiful-mosque-architecture.jpg"
+      },
+      {
+        "icon": "School",
+        "title": "Schools & Educational Facilities",
+        "description": "Create learning environments that transform lives, providing access to quality education for children and adults.",
+        "benefits": [
+          "Classrooms designed for effective learning",
+          "Safe, accessible facilities",
+          "Teacher accommodation when needed"
+        ],
+        "impact": "Education for hundreds of students annually, breaking cycles of poverty for entire communities",
+        "image": "/modern-school-exterior.png"
+      }
+    ]
+  },
+  "how-it-works": {
+    "headline": "From Vision to Reality",
+    "subheadline": "A clear, transparent process that takes you from initial idea to completed infrastructure",
+    "detailedSteps": [
+      {
+        "phase": "Phase 1: Planning",
+        "steps": [
+          {
+            "icon": "Search",
+            "title": "Choose Project",
+            "description": "Select from mosques, schools, or custom visions."
+          }
+        ]
+      }
+    ],
+    "trustPoints": [
+      {
+        "icon": "Shield",
+        "title": "Trust Guaranteed",
+        "description": "Full transparency on every dollar spent."
+      }
+    ]
+  },
+  "impact": {
+    "headline": "Our Global Impact",
+    "subheadline": "See the real difference we're making in communities worldwide through transparent charity construction.",
+    "stats": [
+      {
+        "label": "Mosques Built",
+        "value": "120+"
+      },
+      {
+        "label": "Schools Completed",
+        "value": "45+"
+      },
+      {
+        "label": "Lives Impacted",
+        "value": "250,000+"
+      }
+    ],
+    "stories": [
+      {
+        "title": "A New Center for Learning",
+        "location": "Lagos, Nigeria",
+        "description": "How a single school project transformed the educational outlook for over 300 children in a rural community.",
+        "image": "/modern-school-exterior.png",
+        "impact": "300+ Students"
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Reach Out to Us",
+    "subheadline": "Have questions about starting a project? We're here to help guide you through the process."
+  }
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "1",
+    "title": {
+      "en": "Community Mosque Project",
+      "ar": "مشروع مسجد المجتمع",
+      "de": "Gemeinschaftsmoschee-Projekt"
+    },
+    "category": "mosque",
+    "location": {
+      "en": "West Africa",
+      "ar": "غرب أفريقيا",
+      "de": "Westafrika"
+    },
+    "cost": 45000,
+    "description": {
+      "en": "A sustainable community mosque serving over 500 residents with prayer halls and educational spaces.",
+      "ar": "مسجد مجتمعي مستدام يخدم أكثر من 500 مقيم مع قاعات صلاة ومساحات تعليمية.",
+      "de": "Eine nachhaltige Gemeinschaftsmoschee für über 500 Bewohner mit Gebetshallen und Bildungsräumen."
+    },
+    "imageUrl": "/beautiful-mosque-architecture.jpg",
+    "status": "completed",
+    "submittedAt": "2026-03-25T14:30:00Z"
+  },
+  {
+    "id": "2",
+    "title": {
+      "en": "Modern Primary School",
+      "ar": "مدرسة ابتدائية حديثة",
+      "de": "Moderne Grundschule"
+    },
+    "category": "school",
+    "location": {
+      "en": "Southeast Asia",
+      "ar": "جنوب شرق آسيا",
+      "de": "Südostasien"
+    },
+    "cost": 65000,
+    "description": {
+      "en": "Six-classroom primary school equipped with modern learning tools and sanitation facilities.",
+      "ar": "مدرسة ابتدائية مكونة من ستة فصول دراسية مجهزة بأدوات تعلم حديثة ومرافق صحية.",
+      "de": "Grundschule mit sechs Klassenzimmern, ausgestattet mit modernen Lernmitteln und Sanitäranlagen."
+    },
+    "imageUrl": "/modern-school-exterior.png",
+    "status": "completed",
+    "submittedAt": "2026-03-26T10:15:00Z"
+  },
+  {
+    "id": "3",
+    "title": {
+      "en": "Rural Healthcare Clinic",
+      "ar": "عيادة رعاية صحية ريفية",
+      "de": "Ländliche Gesundheitsklinik"
+    },
+    "category": "healthcare",
+    "location": {
+      "en": "East Africa",
+      "ar": "شرق أفريقيا",
+      "de": "Ostafrika"
+    },
+    "cost": 55000,
+    "description": {
+      "en": "Essential healthcare facility providing maternal care and emergency services to remote villages.",
+      "ar": "مرفق رعاية صحية أساسي يوفر رعاية الأمومة وخدمات الطوارئ للقرى النائية.",
+      "de": "Essenzielle Gesundheitseinrichtung, die Mütterpflege und Notfalldienste für entlegene Dörfer bietet."
+    },
+    "imageUrl": "/community-mosque-project.jpg",
+    "status": "completed",
+    "submittedAt": "2026-03-27T09:45:00Z"
+  }
+]

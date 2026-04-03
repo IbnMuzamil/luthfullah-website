@@ -1,0 +1,102 @@
+{
+  "navigation": {
+    "about": "About",
+    "whatWeBuild": "What We Build",
+    "howItWorks": "How It Works",
+    "impact": "Impact",
+    "resources": "Resources",
+    "contact": "Contact",
+    "startProject": "Start a Project"
+  },
+  "home": {
+    "hero": {
+      "badgeText": "Trusted by thousands of donors worldwide",
+      "tagline": "Global Legacy Projects",
+      "brand": "LUTHFULLAH",
+      "headline": "Transform Charity Into",
+      "headlineHighlight": "Eternal Legacy",
+      "subheadline": "We orchestrate world-class charity construction projects with unwavering transparency, precision, and trust. Build mosques, schools, and community centers that serve generations.",
+      "ctaPrimary": "Start Your Legacy Project",
+      "ctaSecondary": "Discover Our Process"
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "countries": "Countries Served",
+      "transparent": "Transparent"
+    }
+  },
+  "howItWorks": {
+    "headline": "Simple, Transparent Process",
+    "subheadline": "From vision to reality in three clear steps",
+    "cta": "Learn More About Our Process",
+    "steps": {
+      "step1": {
+        "title": "Choose Your Project",
+        "description": "Select from mosques, schools, community centers, water facilities, or custom projects."
+      },
+      "step2": {
+        "title": "We Build & Monitor",
+        "description": "Our trusted teams handle construction with regular updates and full transparency."
+      },
+      "step3": {
+        "title": "Impact Delivered",
+        "description": "Receive completion reports with photos, GPS coordinates, and lasting impact."
+      }
+    }
+  },
+  "projects": {
+    "headline": "Our Projects",
+    "subheadline": "Real-world impact through quality construction and community-focused infrastructure",
+    "categories": {
+      "mosques": "Mosques",
+      "schools": "Schools",
+      "communityCenters": "Community Centers",
+      "waterSanitation": "Water & Sanitation",
+      "shelters": "Shelters"
+    },
+    "addToCart": "Add to Cart",
+    "inCart": "In Cart",
+    "cost": "Cost"
+  },
+  "footer": {
+    "description": "Helping individuals, families, and organizations build lasting infrastructure that transforms communities through transparent, trusted charity construction.",
+    "company": "Company",
+    "sectors": "Sectors",
+    "resources": "Resources",
+    "copyright": "© 2026 LUTHFULLAH. GLOBAL IMPACT ENGINE."
+  },
+  "about": {
+    "headline": "Building Trust, Delivering Impact",
+    "subheadline": "We exist to transform charitable intentions into real, completed infrastructure that serves communities for generations to come.",
+    "mission": {
+      "title": "Our Mission",
+      "content": "To simplify charity construction by managing end-to-end projects for donors, ensuring every dollar is used wisely, transparently, and effectively to create lasting infrastructure that transforms communities."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "A world where charitable construction is trusted, accessible, and impactful - where every donor can confidently build infrastructure that creates opportunity, dignity, and lasting change for generations."
+    }
+  },
+  "cart": {
+    "title": "Your Selection",
+    "empty": "Your selection is empty",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout",
+    "itemCount": "{count} {count, plural, one {item} other {items}}"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "contactDetails": "Contact Details",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "paymentMethod": "Payment Method",
+    "stripe": "Stripe (Global)",
+    "paystack": "Paystack (Africa)",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "emptyCartMessage": "Your cart is empty. Please add some projects to continue.",
+    "returnToProjects": "Return to Projects"
+  }
+}
