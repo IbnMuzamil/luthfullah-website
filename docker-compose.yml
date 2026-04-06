@@ -1,9 +1,12 @@
 services:
   luthfullah-website:
-    image: nginx:alpine
+    image: node:18-alpine
     container_name: luthfullah-container
     restart: always
+    working_dir: /app
     volumes:
-      - ./:/usr/share/nginx/html:ro
+      - ./:/app
     ports:
-      - "8081:80"  # Stays on 8081 to avoid OpenClaw
+      - "8081:3000"  # Map your VPS Port 8081 to Next.js Port 3000
+    command: >
+      sh -c "npm install && npm run build && npm start"
