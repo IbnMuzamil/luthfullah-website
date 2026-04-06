@@ -2,33 +2,32 @@ import type { Metadata } from "next"
 import { Card } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { pages, config } from "@/lib/db"
+import { config } from "@/lib/db"
 import { DynamicIcon } from "@/components/dynamic-icon"
 import { getTranslations } from "next-intl/server"
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "aboutPage" })
   const siteConfig = await config.get()
-  const pageData = await pages.getPage("about")
   
   return {
-    title: `${pageData?.headline || "About Us"} | ${siteConfig.header?.brandName || "Luthfullah"}`,
-    description: pageData?.subheadline || "Learn about our mission to make charity construction transparent, frugal, and impactful.",
+    title: `${t("headline")} | ${siteConfig.header?.brandName || "Luthfullah"}`,
+    description: t("subheadline"),
   }
 }
 
-export default async function AboutPage() {
-  const t = await getTranslations("about");
+export default async function AboutPage({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: "about" })
+  const pageT = await getTranslations({ locale, namespace: "aboutPage" })
   
   const data = {
     headline: t("headline"),
     subheadline: t("subheadline"),
     mission: { title: t("mission.title"), content: t("mission.content") },
     vision: { title: t("vision.title"), content: t("vision.content") },
-    values: [], 
-    approach: []
+    values: pageT.raw("values") as any[],
+    approach: pageT.raw("approach") as any[],
   }
-
-  // ... (rest of the component using data)
 
   return (
     <>
@@ -38,11 +37,7 @@ export default async function AboutPage() {
         <section className="pt-32 pb-16 bg-gradient-to-b from-secondary/30 to-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold text-balance">
-                {data.headline.split(' ').map((word: string, i: number) => 
-                  word === "Impact" ? <span key={i} className="text-primary"> {word}</span> : <span key={i}> {word}</span>
-                )}
-              </h1>
+              <h1 className="text-5xl md:text-6xl font-bold text-balance">{data.headline}</h1>
               <p className="text-xl text-muted-foreground text-balance leading-relaxed">
                 {data.subheadline}
               </p>
@@ -82,9 +77,9 @@ export default async function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 space-y-4">
-                <h2 className="text-4xl md:text-5xl font-bold">Our Values</h2>
+                <h2 className="text-4xl md:text-5xl font-bold">{pageT('valuesSectionTitle')}</h2>
                 <p className="text-xl text-muted-foreground text-balance max-w-2xl mx-auto">
-                  The principles that guide every project we build
+                  {pageT('valuesSectionSubtitle')}
                 </p>
               </div>
 
@@ -110,8 +105,8 @@ export default async function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto space-y-8">
               <div className="text-center mb-12 space-y-4">
-                <h2 className="text-4xl md:text-5xl font-bold">Our Approach</h2>
-                <p className="text-xl text-muted-foreground">Frugal, transparent, and committed for the long-term</p>
+                <h2 className="text-4xl md:text-5xl font-bold">{pageT('approachSectionTitle')}</h2>
+                <p className="text-xl text-muted-foreground">{pageT('approachSectionSubtitle')}</p>
               </div>
 
               {data.approach?.map((item: any, index: number) => (
@@ -130,11 +125,9 @@ export default async function AboutPage() {
         <section className="py-20 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-balance">Why We Exist</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-balance">{pageT('whyWeExistTitle')}</h2>
               <p className="text-xl leading-relaxed text-balance opacity-90">
-                Too many donors want to build lasting charitable projects but struggle with complexity, uncertain costs,
-                and lack of transparency. We exist to remove these barriers - making it simple, trustworthy, and
-                accessible for anyone to fund infrastructure that transforms communities for generations.
+                {pageT('whyWeExistDescription')}
               </p>
             </div>
           </div>

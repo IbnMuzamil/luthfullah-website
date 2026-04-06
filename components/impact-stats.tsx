@@ -6,6 +6,7 @@ import { Users, Building2, Globe, Heart } from 'lucide-react'
 
 export function ImpactStats() {
   const t = useTranslations('home.stats')
+  const sectionT = useTranslations('homeImpactScale')
   const [visibleStats, setVisibleStats] = useState<number[]>([])
   const [counts, setCounts] = useState({ projects: 0, countries: 0, donors: 0, impact: 0 })
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -100,10 +101,10 @@ export function ImpactStats() {
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
-              Global Impact at Scale
+              {sectionT('title')}
             </h2>
             <p className="text-base md:text-xl text-slate-300/80 max-w-2xl mx-auto">
-              Transforming charitable intentions into real-world infrastructure across continents
+              {sectionT('subtitle')}
             </p>
           </div>
 
@@ -150,10 +151,10 @@ export function ImpactStats() {
 
                     <div className="mt-4 pt-4 border-t border-slate-700/30">
                       <div className="text-xs text-slate-500 uppercase tracking-wider font-bold">
-                        {index === 0 && 'Mosques, Schools & Community Centers'}
-                        {index === 1 && 'Across Africa, Middle East & Asia'}
-                        {index === 2 && 'Worldwide contributors'}
-                        {index === 3 && 'Infrastructure Created'}
+                        {index === 0 && sectionT('details.projects')}
+                        {index === 1 && sectionT('details.countries')}
+                        {index === 2 && sectionT('details.donors')}
+                        {index === 3 && sectionT('details.impact')}
                       </div>
                     </div>
                   </div>

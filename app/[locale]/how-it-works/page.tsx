@@ -1,25 +1,33 @@
 import type { Metadata } from "next"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { pages, config } from "@/lib/db"
+import { config } from "@/lib/db"
 import { HowItWorksContent } from "@/components/how-it-works-content"
+import { getTranslations } from "next-intl/server"
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "howItWorksPage" })
   const siteConfig = await config.get()
-  const pageData = await pages.getPage("how-it-works")
   
   return {
-    title: `${pageData?.headline || "How It Works"} | ${siteConfig.header?.brandName || "Luthfullah"}`,
-    description: pageData?.subheadline || "A clear, transparent process that takes you from initial idea to completed infrastructure.",
+    title: `${t("headline")} | ${siteConfig.header?.brandName || "Luthfullah"}`,
+    description: t("subheadline"),
   }
 }
 
-export default async function HowItWorksPage() {
-  const data = (await pages.getPage("how-it-works")) || {
-    headline: "From Vision to Reality",
-    subheadline: "A clear, transparent process that takes you from initial idea to completed infrastructure",
-    detailedSteps: [],
-    trustPoints: []
+export default async function HowItWorksPage({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: "howItWorksPage" })
+  const data = {
+    headline: t("headline"),
+    subheadline: t("subheadline"),
+    trustHeadingPrefix: t("trustHeadingPrefix"),
+    trustHeadingHighlight: t("trustHeadingHighlight"),
+    ctaTitle: t("cta.title"),
+    ctaDescription: t("cta.description"),
+    ctaPrimaryLabel: t("cta.primary"),
+    ctaSecondaryLabel: t("cta.secondary"),
+    detailedSteps: t.raw("detailedSteps") as any[],
+    trustPoints: t.raw("trustPoints") as any[],
   }
 
   return (

@@ -54,10 +54,14 @@
       "schools": "Schulen",
       "communityCenters": "Gemeindezentren",
       "waterSanitation": "Wasser & Sanitär",
+      "wells": "Brunnen",
+      "boreholes": "Bohrlöcher",
       "shelters": "Unterkünfte",
       "iftar": "Iftar-Verteilung",
       "adha": "Eid al-Adha"
     },
+    "typesAvailable": "Typen verfügbar",
+    "startingFrom": "Ab",
     "addToCart": "In den Warenkorb",
     "inCart": "Im Warenkorb",
     "cost": "Kosten"
@@ -139,5 +143,245 @@
     "deadline": "Zeitrahmen",
     "details": "Projektdetails",
     "submit": "Antrag einreichen"
+  },
+  "homeImpactScale": {
+    "title": "Globale Wirkung im großen Maßstab",
+    "subtitle": "Wir verwandeln wohltätige Absichten in reale Infrastruktur über Kontinente hinweg",
+    "details": {
+      "projects": "Moscheen, Schulen und Gemeindezentren",
+      "countries": "In Afrika, Nahost und Asien",
+      "donors": "Unterstützer weltweit",
+      "impact": "Geschaffene Infrastruktur"
+    }
+  },
+  "homePortfolio": {
+    "eyebrow": "Aktuelles Portfolio",
+    "title": "Neueste abgeschlossene Projekte",
+    "subtitle": "Entdecken Sie die neuesten Infrastrukturprojekte, die wir mit voller Transparenz umgesetzt haben.",
+    "viewFullPortfolio": "Gesamtes Portfolio ansehen",
+    "viewCaseStudy": "Fallstudie ansehen",
+    "statusCompleted": "Abgeschlossen",
+    "fallbackTitle": "Projekttitel",
+    "fallbackDescription": "Projektbeschreibung nicht verfügbar.",
+    "fallbackLocation": "Unbekannt",
+    "fallbackNoImage": "Kein Bild",
+    "emptyState": "Noch keine aktuellen Portfolio-Projekte hinzugefügt."
+  },
+  "aboutPage": {
+    "headline": "Vertrauen aufbauen, Wirkung erzielen",
+    "subheadline": "Wir verwandeln wohltätige Absichten in echte Infrastruktur, die Gemeinschaften über Generationen dient.",
+    "valuesSectionTitle": "Unsere Werte",
+    "valuesSectionSubtitle": "Prinzipien, die jedes unserer Projekte leiten",
+    "values": [
+      {
+        "title": "Transparenz",
+        "content": "Volle Sichtbarkeit bei Kosten, Fortschritt und Ergebnissen für jeden Spender.",
+        "icon": "Shield"
+      },
+      {
+        "title": "Effizienz",
+        "content": "Wir minimieren Overhead und maximieren die Wirkung vor Ort ohne Qualitätsverlust.",
+        "icon": "Heart"
+      },
+      {
+        "title": "Gemeinschaftsfokus",
+        "content": "Projekte entstehen gemeinsam mit lokalen Partnern und echten Bedarfen.",
+        "icon": "Users"
+      }
+    ],
+    "approachSectionTitle": "Unser Ansatz",
+    "approachSectionSubtitle": "Effizient, transparent und langfristig engagiert",
+    "approach": [
+      {
+        "title": "Schlanke Abläufe",
+        "content": "Wir halten Betriebskosten niedrig durch lokale Partnerschaften und effiziente Umsetzung."
+      },
+      {
+        "title": "Volle Transparenz",
+        "content": "Spender erhalten klare Updates, Nachweise zu Meilensteinen und Abschlussberichte."
+      }
+    ],
+    "whyWeExistTitle": "Warum wir existieren",
+    "whyWeExistDescription": "Viele Spender möchten nachhaltige Projekte realisieren, stoßen aber auf Komplexität, unklare Kosten und fehlende Transparenz. Wir beseitigen diese Hürden und machen Wirkung einfach, vertrauenswürdig und zugänglich."
+  },
+  "howItWorksPage": {
+    "headline": "Von der Vision zur Realität",
+    "subheadline": "Ein klarer, transparenter Prozess von der Idee bis zur fertigen Infrastruktur",
+    "detailedSteps": [
+      {
+        "phase": "Phase 1: Planung",
+        "overviewTitle": "Planung",
+        "overviewDescription": "Projektziele, Budget, Standort und Umsetzungsplan werden definiert.",
+        "steps": [
+          {
+            "icon": "Search",
+            "title": "Umfang festlegen",
+            "description": "Gemeinsam mit unseren Beratern stimmen Sie Ziele, Budget und Zielgruppe ab."
+          },
+          {
+            "icon": "MapPinned",
+            "title": "Standortprüfung",
+            "description": "Wir prüfen Standort, lokale Vorgaben und Anforderungen der Gemeinschaft."
+          }
+        ]
+      },
+      {
+        "phase": "Phase 2: Bau",
+        "overviewTitle": "Bau",
+        "overviewDescription": "Umsetzung mit Qualitätskontrolle und transparenten Meilensteinen.",
+        "steps": [
+          {
+            "icon": "Hammer",
+            "title": "Bauausführung",
+            "description": "Unsere Teams bauen nach Freigabeplänen mit strenger Qualitätsaufsicht."
+          },
+          {
+            "icon": "Camera",
+            "title": "Fortschrittsberichte",
+            "description": "Sie erhalten regelmäßige Updates, Fotos und verifizierte Meilensteine."
+          }
+        ]
+      },
+      {
+        "phase": "Phase 3: Übergabe",
+        "overviewTitle": "Übergabe",
+        "overviewDescription": "Fertige Infrastruktur mit messbaren Wirkungsnachweisen.",
+        "steps": [
+          {
+            "icon": "CheckCircle2",
+            "title": "Projektübergabe",
+            "description": "Die finale Übergabe bestätigt Qualität, Funktion und Einsatzbereitschaft."
+          },
+          {
+            "icon": "BarChart3",
+            "title": "Wirkungsdokumentation",
+            "description": "Sie erhalten Nachweise zu Abschluss, Kostenstruktur und Langzeitwirkung."
+          }
+        ]
+      }
+    ],
+    "trustHeadingPrefix": "Aufgebaut auf",
+    "trustHeadingHighlight": "Vertrauen & Transparenz",
+    "trustPoints": [
+      {
+        "icon": "Shield",
+        "title": "Verifizierte Umsetzung",
+        "description": "Jede Phase folgt einem kontrollierten Ablauf mit dokumentierten Meilensteinen."
+      },
+      {
+        "icon": "FileCheck2",
+        "title": "Transparente Berichte",
+        "description": "Budgets, Fortschritte und Ergebnisse werden klar kommuniziert."
+      }
+    ],
+    "cta": {
+      "title": "Bereit, Ihr Projekt zu starten?",
+      "description": "Schließen Sie sich Hunderten Spendern an, die mit unserem transparenten Prozess Wirkung geschaffen haben.",
+      "primary": "Wohltätigkeitsprojekt starten",
+      "secondary": "Unsere Wirkung ansehen"
+    }
+  },
+  "whatWeBuildPage": {
+    "headline": "Infrastruktur mit nachhaltiger Wirkung",
+    "subheadline": "Von spirituellen Zentren bis zu Bildungseinrichtungen bauen wir Infrastruktur für Generationen",
+    "badge": "Architektonische Exzellenz",
+    "qualityBadgeTitle": "Zertifiziert",
+    "qualityBadgeSubtitle": "Hochwertige Ausführung",
+    "includedTitle": "Enthalten:",
+    "impactLabel": "NACHHALTIGE WIRKUNG",
+    "projectCta": "Projekt starten",
+    "projects": {
+      "mosques": {
+        "title": "Moscheen",
+        "description": "Wir bauen Gebetsstätten als spirituelle Zentren für ganze Gemeinschaften.",
+        "benefits": [
+          "Vollständige architektonische Planung",
+          "Gebetshallen, Waschbereiche und Höfe",
+          "Langlebige Qualitätskonstruktion"
+        ],
+        "impact": "Dauerhafte spirituelle und soziale Wirkung für die Gemeinschaft."
+      },
+      "schools": {
+        "title": "Schulen & Bildungseinrichtungen",
+        "description": "Lernumgebungen, die das Leben von Kindern und Erwachsenen verbessern.",
+        "benefits": [
+          "Didaktisch optimierte Klassenräume",
+          "Sichere und barrierearme Infrastruktur",
+          "Lehrerunterkünfte bei Bedarf"
+        ],
+        "impact": "Verbesserte Bildungszugänge und langfristige Chancen vor Ort."
+      },
+      "iftar": {
+        "title": "Iftar-Hilfsküchen",
+        "description": "Ramadan-Versorgungsprogramme mit geeigneter Küchen- und Verteilinfrastruktur.",
+        "benefits": [
+          "Eigene Infrastruktur für Zubereitung und Verteilung",
+          "Kühlung, Ausgabe und Gemeinschaftsflächen",
+          "Abläufe für lokale Freiwilligenteams"
+        ],
+        "impact": "Verlässliche Iftar-Mahlzeiten für Familien während des Ramadan."
+      },
+      "adha": {
+        "title": "Eid al-Adha Spendenzentren",
+        "description": "Transparente Adha-Zentren für ethische Verarbeitung und Verteilung.",
+        "benefits": [
+          "Sichere Tierwohl- und Halal-Prozesse",
+          "Zentrale Verteil-Logistik",
+          "Transparente Berichterstattung mit Partnern vor Ort"
+        ],
+        "impact": "Würdige und wirksame Unterstützung für bedürftige Haushalte zu Eid al-Adha."
+      }
+    },
+    "custom": {
+      "title": "Individuelle Vision-Projekte",
+      "description": "Sie haben ein spezielles Vorhaben? Wir planen und realisieren maßgeschneiderte Infrastrukturprojekte.",
+      "cta": "Individuelles Projekt besprechen"
+    }
+  },
+  "impactPage": {
+    "headline": "Unsere globale Wirkung",
+    "subheadline": "Sehen Sie den realen Unterschied, den wir weltweit in Gemeinschaften schaffen.",
+    "badge": "Messbares Vermächtnis",
+    "featuredStoriesTitle": "Ausgewählte Wirkungsgeschichten",
+    "readStory": "Ganze Geschichte lesen",
+    "stats": [
+      {
+        "label": "Gebaute Moscheen",
+        "value": "120+"
+      },
+      {
+        "label": "Abgeschlossene Schulen",
+        "value": "45+"
+      },
+      {
+        "label": "Erreichte Menschen",
+        "value": "250.000+"
+      }
+    ],
+    "stories": [
+      {
+        "title": "Ein neues Lernzentrum",
+        "location": "Lagos, Nigeria",
+        "description": "Ein einzelnes Schulprojekt verbesserte den Zugang zu Bildung für über 300 Kinder.",
+        "impact": "300+ Schüler",
+        "image": "/modern-school-exterior.png"
+      }
+    ],
+    "completedInfrastructureTitle": "Abgeschlossene Infrastruktur",
+    "completedInfrastructureSubtitle": "Ein Nachweis physischer Transformation weltweit.",
+    "globalReachLabel": "Globale Reichweite: {count} Projekte",
+    "emptyProjects": "Abschlussberichte für Projekte folgen",
+    "finalizedBudget": "Finales Budget",
+    "viewCaseStudy": "Fallstudie ansehen",
+    "fallback": {
+      "category": "Infrastruktur",
+      "globalLocation": "Globaler Standort"
+    },
+    "cta": {
+      "title": "Bereit, Ihr ewiges Vermächtnis aufzubauen?",
+      "description": "Werden Sie Teil einer Gemeinschaft, die transparente Hochwirkungs-Infrastruktur ermöglicht.",
+      "primary": "Projekt starten",
+      "secondary": "Jetzt anfragen"
+    }
   }
 }

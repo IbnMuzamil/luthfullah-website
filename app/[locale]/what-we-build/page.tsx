@@ -8,23 +8,49 @@ import { pages, config } from "@/lib/db"
 import { DynamicIcon } from "@/components/dynamic-icon"
 import { Sparkles, ArrowRight, CheckCircle2, Plus } from "lucide-react"
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "whatWeBuildPage" })
   const siteConfig = await config.get()
-  const pageData = await pages.get("what-we-build")
   
   return {
-    title: `${pageData?.headline || "What We Build"} | ${siteConfig.header?.brandName || "Luthfullah"}`,
-    description: pageData?.subheadline || "Discover the types of charity construction projects we manage.",
+    title: `${t("headline")} | ${siteConfig.header?.brandName || "Luthfullah"}`,
+    description: t("subheadline"),
   }
 }
 
-export default async function WhatWeBuildPage() {
-  const data = (await pages.get("what-we-build")) || {
-    headline: "Infrastructure for Lasting Impact",
-    subheadline: "From spiritual centers to educational facilities, we build infrastructure that serves communities for generations",
-    projects: []
+export default async function WhatWeBuildPage({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: "whatWeBuildPage" })
+  const data = (await pages.get("what-we-build")) || { projects: [] }
+
+  const getProjectText = (key: string, fallback: string) => {
+    try {
+      return t(key)
+    } catch {
+      return fallback
+    }
   }
+
+  const localizedProjects = (data.projects || []).map((project: any) => {
+    const key = project.id
+    const fallbackBenefits = Array.isArray(project.benefits) ? project.benefits : []
+    let translatedBenefits = fallbackBenefits
+
+    try {
+      translatedBenefits = t.raw(`projects.${key}.benefits`) as string[]
+    } catch {
+      translatedBenefits = fallbackBenefits
+    }
+
+    return {
+      ...project,
+      title: getProjectText(`projects.${key}.title`, project.title),
+      description: getProjectText(`projects.${key}.description`, project.description),
+      impact: getProjectText(`projects.${key}.impact`, project.impact),
+      benefits: translatedBenefits,
+    }
+  })
 
   return (
     <>
@@ -40,13 +66,13 @@ export default async function WhatWeBuildPage() {
             <div className="max-w-4xl mx-auto text-center space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-black tracking-widest uppercase mb-4 animate-fade-in">
                 <Sparkles className="w-4 h-4" />
-                <span>Architectural Excellence</span>
+                <span>{t('badge')}</span>
               </div>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-brand-deep tracking-tighter leading-[0.9] text-balance">
-                {data.headline || "Infrastructure for Lasting Impact"}
+                {t('headline')}
               </h1>
               <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium text-balance max-w-3xl mx-auto">
-                {data.subheadline}
+                {t('subheadline')}
               </p>
             </div>
           </div>
@@ -56,7 +82,7 @@ export default async function WhatWeBuildPage() {
         <section className="py-24 relative z-10">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto space-y-32">
-              {data.projects?.map((project: any, index: number) => {
+              {localizedProjects.map((project: any, index: number) => {
                 const isEven = index % 2 === 0
 
                 return (
@@ -83,8 +109,8 @@ export default async function WhatWeBuildPage() {
                                <CheckCircle2 className="w-6 h-6 text-primary" />
                             </div>
                             <div>
-                               <div className="text-brand-deep font-black text-lg leading-none">Certified</div>
-                               <div className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-1">High Quality Build</div>
+                               <div className="text-brand-deep font-black text-lg leading-none">{t('qualityBadgeTitle')}</div>
+                               <div className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-1">{t('qualityBadgeSubtitle')}</div>
                             </div>
                          </div>
                       </div>
@@ -102,7 +128,7 @@ export default async function WhatWeBuildPage() {
                       <p className="text-xl text-slate-500 leading-relaxed font-medium">{project.description}</p>
 
                       <div className="space-y-4">
-                        <h3 className="font-black text-brand-deep text-sm uppercase tracking-widest opacity-40">What&apos;s Included:</h3>
+                        <h3 className="font-black text-brand-deep text-sm uppercase tracking-widest opacity-40">{t('includedTitle')}</h3>
                         <div className="grid gap-3">
                           {project.benefits?.map((benefit: string, i: number) => (
                             <div key={i} className="flex items-start gap-4 text-slate-600 font-bold group">
@@ -117,13 +143,13 @@ export default async function WhatWeBuildPage() {
                         <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:rotate-12 transition-transform">
                            <Sparkles className="w-20 h-20" />
                         </div>
-                        <p className="font-black text-xs text-primary uppercase tracking-[0.2em] mb-3">LASTING IMPACT</p>
+                        <p className="font-black text-xs text-primary uppercase tracking-[0.2em] mb-3">{t('impactLabel')}</p>
                         <p className="text-brand-deep text-lg leading-relaxed font-bold">{project.impact}</p>
                       </Card>
 
                       <Button asChild size="lg" className="bg-primary hover:bg-primary-600 h-16 px-10 text-lg font-black rounded-2xl shadow-xl shadow-primary/20 w-full md:w-auto">
                         <Link href="/start-project">
-                           Initialize Project <ArrowRight className="ml-2 w-5 h-5" />
+                          {t('projectCta')} <ArrowRight className="ml-2 w-5 h-5" />
                         </Link>
                       </Button>
                     </div>
@@ -145,13 +171,13 @@ export default async function WhatWeBuildPage() {
                 <div className="w-24 h-24 rounded-[2.5rem] bg-white/10 flex items-center justify-center mx-auto border border-white/10 shadow-inner">
                   <Plus className="w-12 h-12 text-white" />
                 </div>
-                <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-tight">Custom Visionary Projects</h2>
+                <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-tight">{t('custom.title')}</h2>
                 <p className="text-xl text-blue-100/70 leading-relaxed max-w-2xl mx-auto font-medium">
-                  Have a specific high-impact project in mind? We plan and execute bespoke charity infrastructure tailored to your exact vision and community needs.
+                  {t('custom.description')}
                 </p>
                 <div className="pt-6">
                    <Button size="lg" className="bg-white hover:bg-slate-100 text-brand-deep text-xl h-20 px-12 rounded-3xl font-black shadow-2xl transition-all hover:scale-105 active:scale-95" asChild>
-                     <Link href="/start-project">Discuss Your Custom Project</Link>
+                     <Link href="/start-project">{t('custom.cta')}</Link>
                    </Button>
                 </div>
               </div>

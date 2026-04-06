@@ -1,10 +1,15 @@
 [
   {
-    "id": "1",
+    "id": "mosque-small-rural",
+    "typeName": {
+      "en": "Small Rural Mosque",
+      "ar": "مسجد ريفي صغير",
+      "de": "Kleine ländliche Moschee"
+    },
     "title": {
-      "en": "Community Mosque Project",
-      "ar": "مشروع مسجد المجتمع",
-      "de": "Gemeinschaftsmoschee-Projekt"
+      "en": "Small Rural Mosque",
+      "ar": "مسجد ريفي صغير",
+      "de": "Kleine ländliche Moschee"
     },
     "category": "mosque",
     "location": {
@@ -12,22 +17,237 @@
       "ar": "غرب أفريقيا",
       "de": "Westafrika"
     },
-    "cost": 45000,
+    "cost": 25000,
+    "pricing": {
+      "mode": "starting_from",
+      "amountMin": 25000,
+      "amountMax": null,
+      "currency": "USD"
+    },
     "description": {
-      "en": "A sustainable community mosque serving over 500 residents with prayer halls and educational spaces.",
-      "ar": "مسجد مجتمعي مستدام يخدم أكثر من 500 مقيم مع قاعات صلاة ومساحات تعليمية.",
-      "de": "Eine nachhaltige Gemeinschaftsmoschee für über 500 Bewohner mit Gebetshallen und Bildungsräumen."
+      "en": "Prayer hall, ablution area, and basic solar package for smaller communities.",
+      "ar": "قاعة صلاة ومنطقة وضوء وباقة طاقة شمسية أساسية للمجتمعات الصغيرة.",
+      "de": "Gebetshalle, Wudu-Bereich und Basispaket Solar für kleinere Gemeinschaften."
     },
     "imageUrl": "/beautiful-mosque-architecture.jpg",
-    "status": "completed",
-    "submittedAt": "2026-03-25T14:30:00Z"
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
   },
   {
-    "id": "2",
+    "id": "mosque-medium-community",
+    "typeName": {
+      "en": "Medium Community Mosque",
+      "ar": "مسجد مجتمعي متوسط",
+      "de": "Mittlere Gemeinschaftsmoschee"
+    },
     "title": {
-      "en": "Modern Primary School",
-      "ar": "مدرسة ابتدائية حديثة",
-      "de": "Moderne Grundschule"
+      "en": "Medium Community Mosque",
+      "ar": "مسجد مجتمعي متوسط",
+      "de": "Mittlere Gemeinschaftsmoschee"
+    },
+    "category": "mosque",
+    "location": {
+      "en": "East Africa",
+      "ar": "شرق أفريقيا",
+      "de": "Ostafrika"
+    },
+    "cost": 45000,
+    "pricing": {
+      "mode": "fixed",
+      "amountMin": 45000,
+      "amountMax": null,
+      "currency": "USD"
+    },
+    "description": {
+      "en": "Expanded mosque plan with classrooms and higher worship capacity.",
+      "ar": "مخطط موسع للمسجد مع قاعات تعليمية وسعة أكبر للمصلين.",
+      "de": "Erweitertes Moschee-Konzept mit Lernräumen und höherer Kapazität."
+    },
+    "imageUrl": "/beautiful-mosque-architecture.jpg",
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
+  },
+  {
+    "id": "mosque-large-central",
+    "typeName": {
+      "en": "Large Central Mosque",
+      "ar": "مسجد مركزي كبير",
+      "de": "Große Zentralmoschee"
+    },
+    "title": {
+      "en": "Large Central Mosque",
+      "ar": "مسجد مركزي كبير",
+      "de": "Große Zentralmoschee"
+    },
+    "category": "mosque",
+    "location": {
+      "en": "North Africa",
+      "ar": "شمال أفريقيا",
+      "de": "Nordafrika"
+    },
+    "cost": 90000,
+    "pricing": {
+      "mode": "range",
+      "amountMin": 80000,
+      "amountMax": 120000,
+      "currency": "USD"
+    },
+    "description": {
+      "en": "Central mosque specification with expanded courtyard and support spaces.",
+      "ar": "مواصفات مسجد مركزي مع ساحة موسعة ومرافق خدمية إضافية.",
+      "de": "Zentralmoschee mit erweitertem Innenhof und zusätzlichen Funktionsbereichen."
+    },
+    "imageUrl": "/beautiful-mosque-architecture.jpg",
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
+  },
+  {
+    "id": "well-hand-pump",
+    "typeName": {
+      "en": "Hand Pump Water Well",
+      "ar": "بئر مياه بمضخة يدوية",
+      "de": "Handpumpen-Brunnen"
+    },
+    "title": {
+      "en": "Hand Pump Water Well",
+      "ar": "بئر مياه بمضخة يدوية",
+      "de": "Handpumpen-Brunnen"
+    },
+    "category": "well",
+    "location": {
+      "en": "Sahel Region",
+      "ar": "منطقة الساحل",
+      "de": "Sahel-Region"
+    },
+    "cost": 3500,
+    "pricing": {
+      "mode": "fixed",
+      "amountMin": 3500,
+      "amountMax": null,
+      "currency": "USD"
+    },
+    "description": {
+      "en": "Reliable hand-pump well for villages needing fast clean water access.",
+      "ar": "بئر موثوق بمضخة يدوية للقرى التي تحتاج وصولاً سريعاً للمياه النظيفة.",
+      "de": "Zuverlässiger Handpumpen-Brunnen für Dörfer mit akutem Wasserbedarf."
+    },
+    "imageUrl": "/water-well-facility.jpg",
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
+  },
+  {
+    "id": "well-solar-pump",
+    "typeName": {
+      "en": "Solar Pump Water Well",
+      "ar": "بئر مياه بمضخة شمسية",
+      "de": "Solarpumpen-Brunnen"
+    },
+    "title": {
+      "en": "Solar Pump Water Well",
+      "ar": "بئر مياه بمضخة شمسية",
+      "de": "Solarpumpen-Brunnen"
+    },
+    "category": "well",
+    "location": {
+      "en": "Horn of Africa",
+      "ar": "القرن الأفريقي",
+      "de": "Horn von Afrika"
+    },
+    "cost": 7800,
+    "pricing": {
+      "mode": "fixed",
+      "amountMin": 7800,
+      "amountMax": null,
+      "currency": "USD"
+    },
+    "description": {
+      "en": "Solar-powered pumping system for reliable daily water distribution.",
+      "ar": "نظام ضخ يعمل بالطاقة الشمسية لتوزيع مياه يومي موثوق.",
+      "de": "Solarbetriebenes Pumpsystem für verlässliche tägliche Wasserversorgung."
+    },
+    "imageUrl": "/water-well-facility.jpg",
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
+  },
+  {
+    "id": "borehole-standard",
+    "typeName": {
+      "en": "Standard Borehole",
+      "ar": "بئر ارتوازي قياسي",
+      "de": "Standard-Bohrloch"
+    },
+    "title": {
+      "en": "Standard Borehole",
+      "ar": "بئر ارتوازي قياسي",
+      "de": "Standard-Bohrloch"
+    },
+    "category": "borehole",
+    "location": {
+      "en": "Rural East Africa",
+      "ar": "ريف شرق أفريقيا",
+      "de": "Ländliches Ostafrika"
+    },
+    "cost": 12000,
+    "pricing": {
+      "mode": "starting_from",
+      "amountMin": 12000,
+      "amountMax": null,
+      "currency": "USD"
+    },
+    "description": {
+      "en": "Deep borehole drilling with durable casing and community tap point.",
+      "ar": "حفر بئر ارتوازي عميق مع تغليف متين ونقطة توزيع مجتمعية.",
+      "de": "Tiefbohrung mit robuster Verrohrung und gemeinschaftlichem Zapfpunkt."
+    },
+    "imageUrl": "/water-well-facility.jpg",
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
+  },
+  {
+    "id": "borehole-high-yield",
+    "typeName": {
+      "en": "High-Yield Borehole",
+      "ar": "بئر ارتوازي عالي الإنتاج",
+      "de": "Hochleistungs-Bohrloch"
+    },
+    "title": {
+      "en": "High-Yield Borehole",
+      "ar": "بئر ارتوازي عالي الإنتاج",
+      "de": "Hochleistungs-Bohrloch"
+    },
+    "category": "borehole",
+    "location": {
+      "en": "Northern Nigeria",
+      "ar": "شمال نيجيريا",
+      "de": "Nordnigeria"
+    },
+    "cost": 18500,
+    "pricing": {
+      "mode": "range",
+      "amountMin": 18000,
+      "amountMax": 26000,
+      "currency": "USD"
+    },
+    "description": {
+      "en": "High-capacity borehole package for larger beneficiary populations.",
+      "ar": "باقة بئر ارتوازي عالية السعة للمجتمعات الأكبر عدداً.",
+      "de": "Bohrlochpaket mit hoher Leistung für größere Versorgungsgebiete."
+    },
+    "imageUrl": "/water-well-facility.jpg",
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
+  },
+  {
+    "id": "school-basic",
+    "typeName": {
+      "en": "Basic 4-Classroom School",
+      "ar": "مدرسة أساسية من 4 فصول",
+      "de": "Grundschule mit 4 Klassen"
+    },
+    "title": {
+      "en": "Basic 4-Classroom School",
+      "ar": "مدرسة أساسية من 4 فصول",
+      "de": "Grundschule mit 4 Klassen"
     },
     "category": "school",
     "location": {
@@ -36,36 +256,19 @@
       "de": "Südostasien"
     },
     "cost": 65000,
+    "pricing": {
+      "mode": "starting_from",
+      "amountMin": 65000,
+      "amountMax": null,
+      "currency": "USD"
+    },
     "description": {
-      "en": "Six-classroom primary school equipped with modern learning tools and sanitation facilities.",
-      "ar": "مدرسة ابتدائية مكونة من ستة فصول دراسية مجهزة بأدوات تعلم حديثة ومرافق صحية.",
-      "de": "Grundschule mit sechs Klassenzimmern, ausgestattet mit modernen Lernmitteln und Sanitäranlagen."
+      "en": "Core school package with classrooms, sanitation, and starter learning equipment.",
+      "ar": "باقة مدرسة أساسية تشمل الفصول والمرافق الصحية ومعدات تعليمية مبدئية.",
+      "de": "Schulpaket mit Klassenräumen, Sanitäranlagen und Grundausstattung für Lernen."
     },
     "imageUrl": "/modern-school-exterior.png",
-    "status": "completed",
-    "submittedAt": "2026-03-26T10:15:00Z"
-  },
-  {
-    "id": "3",
-    "title": {
-      "en": "Rural Healthcare Clinic",
-      "ar": "عيادة رعاية صحية ريفية",
-      "de": "Ländliche Gesundheitsklinik"
-    },
-    "category": "healthcare",
-    "location": {
-      "en": "East Africa",
-      "ar": "شرق أفريقيا",
-      "de": "Ostafrika"
-    },
-    "cost": 55000,
-    "description": {
-      "en": "Essential healthcare facility providing maternal care and emergency services to remote villages.",
-      "ar": "مرفق رعاية صحية أساسي يوفر رعاية الأمومة وخدمات الطوارئ للقرى النائية.",
-      "de": "Essenzielle Gesundheitseinrichtung, die Mütterpflege und Notfalldienste für entlegene Dörfer bietet."
-    },
-    "imageUrl": "/community-center-facility.jpg",
-    "status": "completed",
-    "submittedAt": "2026-03-27T09:45:00Z"
+    "status": "active",
+    "submittedAt": "2026-04-06T09:00:00Z"
   }
 ]

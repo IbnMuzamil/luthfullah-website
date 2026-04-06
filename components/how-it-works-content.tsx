@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/lib/navigation"
 import { useEffect, useRef, useState } from "react"
 import { DynamicIcon } from "@/components/dynamic-icon"
 
@@ -68,8 +68,8 @@ export function HowItWorksContent({ data }: HowItWorksContentProps) {
                     </div>
                     <span className="text-3xl font-bold text-primary/20">0{index + 1}</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{phase.phase.split(': ')[1]}</h3>
-                  <p className="text-muted-foreground">{phase.steps[0].description.split('.')[0]}.</p>
+                  <h3 className="text-xl font-semibold mb-2">{phase.overviewTitle || phase.phase}</h3>
+                  <p className="text-muted-foreground">{phase.overviewDescription || phase.steps?.[0]?.description}</p>
                 </Card>
               ))}
             </div>
@@ -130,7 +130,7 @@ export function HowItWorksContent({ data }: HowItWorksContentProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Built on <span className="text-primary">Trust & Transparency</span>
+              {data.trustHeadingPrefix} <span className="text-primary">{data.trustHeadingHighlight}</span>
             </h2>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -154,14 +154,14 @@ export function HowItWorksContent({ data }: HowItWorksContentProps) {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-balance">Ready to Start Your Project?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-balance">{data.ctaTitle}</h2>
             <p className="text-xl leading-relaxed text-balance opacity-90">
-              Join hundreds of donors who have built lasting impact through our transparent, trusted process
+              {data.ctaDescription}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Button size="lg" variant="secondary" className="text-lg px-8 py-6 group" asChild>
                 <Link href="/start-project">
-                  Start a Charity Project
+                  {data.ctaPrimaryLabel}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -171,7 +171,7 @@ export function HowItWorksContent({ data }: HowItWorksContentProps) {
                 className="text-lg px-8 py-6 border-2 border-primary-foreground/20 bg-transparent hover:bg-primary-foreground/10 text-primary-foreground"
                 asChild
               >
-                <Link href="/impact">See Our Impact</Link>
+                <Link href="/impact">{data.ctaSecondaryLabel}</Link>
               </Button>
             </div>
           </div>

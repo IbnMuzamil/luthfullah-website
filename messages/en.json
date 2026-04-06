@@ -54,10 +54,14 @@
       "schools": "Schools",
       "communityCenters": "Community Centers",
       "waterSanitation": "Water & Sanitation",
+      "wells": "Water Wells",
+      "boreholes": "Boreholes",
       "shelters": "Shelters",
       "iftar": "Iftar Relief",
       "adha": "Eid al-Adha"
     },
+    "typesAvailable": "types available",
+    "startingFrom": "From",
     "addToCart": "Add to Cart",
     "inCart": "In Cart",
     "cost": "Cost"
@@ -139,5 +143,245 @@
     "deadline": "Timeline",
     "details": "Project Details",
     "submit": "Submit Request"
+  },
+  "homeImpactScale": {
+    "title": "Global Impact at Scale",
+    "subtitle": "Transforming charitable intentions into real-world infrastructure across continents",
+    "details": {
+      "projects": "Mosques, Schools & Community Centers",
+      "countries": "Across Africa, Middle East & Asia",
+      "donors": "Worldwide contributors",
+      "impact": "Infrastructure Created"
+    }
+  },
+  "homePortfolio": {
+    "eyebrow": "Recent Portfolio",
+    "title": "Latest Completed Projects",
+    "subtitle": "Browse the newest completed infrastructure projects we have delivered with full transparency.",
+    "viewFullPortfolio": "View Full Portfolio",
+    "viewCaseStudy": "View Case Study",
+    "statusCompleted": "Completed",
+    "fallbackTitle": "Project Title",
+    "fallbackDescription": "Project description not available.",
+    "fallbackLocation": "Unknown",
+    "fallbackNoImage": "No image",
+    "emptyState": "No recent portfolio projects have been added yet."
+  },
+  "aboutPage": {
+    "headline": "Building Trust, Delivering Impact",
+    "subheadline": "We exist to transform charitable intentions into real, completed infrastructure that serves communities for generations to come.",
+    "valuesSectionTitle": "Our Values",
+    "valuesSectionSubtitle": "The principles that guide every project we build",
+    "values": [
+      {
+        "title": "Transparency",
+        "content": "Complete visibility into costs, progress, and outcomes for every donor.",
+        "icon": "Shield"
+      },
+      {
+        "title": "Frugality",
+        "content": "We reduce overhead and maximize on-ground impact without sacrificing quality.",
+        "icon": "Heart"
+      },
+      {
+        "title": "Community Focus",
+        "content": "Projects are designed with local partners to solve real community needs.",
+        "icon": "Users"
+      }
+    ],
+    "approachSectionTitle": "Our Approach",
+    "approachSectionSubtitle": "Frugal, transparent, and committed for the long-term",
+    "approach": [
+      {
+        "title": "Frugal Operations",
+        "content": "We keep operating costs low by combining local partnerships with efficient project execution."
+      },
+      {
+        "title": "Complete Transparency",
+        "content": "Donors receive clear updates, milestone evidence, and reporting from start to completion."
+      }
+    ],
+    "whyWeExistTitle": "Why We Exist",
+    "whyWeExistDescription": "Too many donors want to build lasting charitable projects but struggle with complexity, uncertain costs, and lack of transparency. We remove these barriers by making impact-building simple, trustworthy, and accessible."
+  },
+  "howItWorksPage": {
+    "headline": "From Vision to Reality",
+    "subheadline": "A clear, transparent process that takes you from initial idea to completed infrastructure",
+    "detailedSteps": [
+      {
+        "phase": "Phase 1: Planning",
+        "overviewTitle": "Planning",
+        "overviewDescription": "Define project goals, budget, location, and implementation roadmap.",
+        "steps": [
+          {
+            "icon": "Search",
+            "title": "Define Scope",
+            "description": "Align your goals, budget, and target beneficiaries with our project advisors."
+          },
+          {
+            "icon": "MapPinned",
+            "title": "Site Assessment",
+            "description": "Evaluate location suitability, local regulations, and community requirements."
+          }
+        ]
+      },
+      {
+        "phase": "Phase 2: Build",
+        "overviewTitle": "Build",
+        "overviewDescription": "Execute construction with quality control and transparent milestones.",
+        "steps": [
+          {
+            "icon": "Hammer",
+            "title": "Construction Execution",
+            "description": "Our teams build according to approved plans with strict quality supervision."
+          },
+          {
+            "icon": "Camera",
+            "title": "Progress Reporting",
+            "description": "Receive scheduled updates, photos, and verified milestone completion reports."
+          }
+        ]
+      },
+      {
+        "phase": "Phase 3: Delivery",
+        "overviewTitle": "Delivery",
+        "overviewDescription": "Handover completed infrastructure with measurable impact evidence.",
+        "steps": [
+          {
+            "icon": "CheckCircle2",
+            "title": "Project Handover",
+            "description": "Final handover confirms quality, functionality, and community readiness."
+          },
+          {
+            "icon": "BarChart3",
+            "title": "Impact Documentation",
+            "description": "You receive completion proof, cost breakdown, and long-term impact data."
+          }
+        ]
+      }
+    ],
+    "trustHeadingPrefix": "Built on",
+    "trustHeadingHighlight": "Trust & Transparency",
+    "trustPoints": [
+      {
+        "icon": "Shield",
+        "title": "Verified Execution",
+        "description": "Each stage follows a controlled workflow with documented milestones."
+      },
+      {
+        "icon": "FileCheck2",
+        "title": "Transparent Reporting",
+        "description": "Budgets, updates, and deliverables are shared clearly with every donor."
+      }
+    ],
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "description": "Join hundreds of donors who have built lasting impact through our transparent process.",
+      "primary": "Start a Charity Project",
+      "secondary": "See Our Impact"
+    }
+  },
+  "whatWeBuildPage": {
+    "headline": "Infrastructure for Lasting Impact",
+    "subheadline": "From spiritual centers to educational facilities, we build infrastructure that serves communities for generations",
+    "badge": "Architectural Excellence",
+    "qualityBadgeTitle": "Certified",
+    "qualityBadgeSubtitle": "High Quality Build",
+    "includedTitle": "What's Included:",
+    "impactLabel": "LASTING IMPACT",
+    "projectCta": "Initialize Project",
+    "projects": {
+      "mosques": {
+        "title": "Mosques",
+        "description": "Build places of worship that serve as spiritual centers for entire communities.",
+        "benefits": [
+          "Complete architectural planning and design",
+          "Prayer halls, ablution facilities, and courtyards",
+          "Quality construction built to last generations"
+        ],
+        "impact": "Ongoing spiritual benefit (Sadaqah Jariyah) and vital local infrastructure."
+      },
+      "schools": {
+        "title": "Schools & Educational Facilities",
+        "description": "Create learning environments that transform lives for children and adults.",
+        "benefits": [
+          "Classrooms designed for effective learning",
+          "Safe, accessible facilities",
+          "Teacher accommodation when needed"
+        ],
+        "impact": "Supports long-term education outcomes and breaks cycles of poverty."
+      },
+      "iftar": {
+        "title": "Iftar Relief Kitchens",
+        "description": "Support Ramadan feeding programs with dedicated kitchen and distribution infrastructure.",
+        "benefits": [
+          "Dedicated food prep and delivery infrastructure",
+          "Cold storage, serving stations, and dining areas",
+          "Volunteer-ready operations for Ramadan campaigns"
+        ],
+        "impact": "Delivers warm, reliable iftar meals to families throughout Ramadan."
+      },
+      "adha": {
+        "title": "Eid al-Adha Donation Hubs",
+        "description": "Build transparent Adha distribution hubs for ethical processing and delivery.",
+        "benefits": [
+          "Secure welfare and halal processing facilities",
+          "Centralized meat distribution logistics",
+          "Transparent reporting with local coordination"
+        ],
+        "impact": "Expands dignified Eid al-Adha support for vulnerable households."
+      }
+    },
+    "custom": {
+      "title": "Custom Visionary Projects",
+      "description": "Have a specific high-impact project in mind? We plan and execute bespoke infrastructure tailored to your vision.",
+      "cta": "Discuss Your Custom Project"
+    }
+  },
+  "impactPage": {
+    "headline": "Our Global Impact",
+    "subheadline": "See the real difference we are making in communities worldwide.",
+    "badge": "Measurable Legacy",
+    "featuredStoriesTitle": "Featured Impact Stories",
+    "readStory": "Read full story",
+    "stats": [
+      {
+        "label": "Mosques Built",
+        "value": "120+"
+      },
+      {
+        "label": "Schools Completed",
+        "value": "45+"
+      },
+      {
+        "label": "Lives Impacted",
+        "value": "250,000+"
+      }
+    ],
+    "stories": [
+      {
+        "title": "A New Center for Learning",
+        "location": "Lagos, Nigeria",
+        "description": "A single school project transformed educational access for over 300 children.",
+        "impact": "300+ Students",
+        "image": "/modern-school-exterior.png"
+      }
+    ],
+    "completedInfrastructureTitle": "Completed Infrastructure",
+    "completedInfrastructureSubtitle": "A record of physical transformation across the globe.",
+    "globalReachLabel": "Global Reach: {count} Projects",
+    "emptyProjects": "Awaiting completed project reports",
+    "finalizedBudget": "Finalized Budget",
+    "viewCaseStudy": "View Case Study",
+    "fallback": {
+      "category": "Infrastructure",
+      "globalLocation": "Global Location"
+    },
+    "cta": {
+      "title": "Ready to Build Your Eternal Legacy?",
+      "description": "Join our community of visionaries building high-impact, transparent infrastructure for communities in need.",
+      "primary": "Start Your Project",
+      "secondary": "Inquire Now"
+    }
   }
 }

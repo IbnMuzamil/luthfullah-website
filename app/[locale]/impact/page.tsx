@@ -1,21 +1,21 @@
 import type { Metadata } from "next"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { MapPin, DollarSign, Globe2, Users, Building2, Sparkles, Heart, ArrowRight } from "lucide-react"
+import { MapPin, DollarSign, Globe2, Building2, Sparkles, Heart, ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { pages, portfolio, config } from "@/lib/db"
+import { portfolio, config } from "@/lib/db"
 import Image from "next/image"
 import { Link } from "@/lib/navigation"
+import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "impactPage" })
   const siteConfig = await config.get()
-  const pageData = await pages.get("impact")
   
   return {
-    title: `${pageData?.headline || "Global Impact"} | ${siteConfig.header?.brandName || "Luthfullah"}`,
-    description: pageData?.subheadline || "See the real difference we're making in communities worldwide.",
+    title: `${t("headline")} | ${siteConfig.header?.brandName || "Luthfullah"}`,
+    description: t("subheadline"),
   }
 }
 
@@ -24,14 +24,25 @@ export default async function ImpactPage({
 }: {
   params: { locale: string }
 }) {
-  const pageData = await pages.get("impact")
+  const t = await getTranslations({ locale, namespace: "impactPage" })
+  const categoryT = await getTranslations({ locale, namespace: "projects.categories" })
   const allProjects = await portfolio.getAll()
-  
-  const data = pageData || {
-    headline: "Our Global Impact",
-    subheadline: "See the real difference we're making in communities worldwide.",
-    stats: [],
-    stories: []
+
+  const data = {
+    headline: t("headline"),
+    subheadline: t("subheadline"),
+    stats: t.raw("stats") as any[],
+    stories: t.raw("stories") as any[],
+  }
+
+  const getCategory = (value?: string) => {
+    if (!value) return t("fallback.category")
+    const key = value.toLowerCase()
+    if (key === "mosque") return categoryT("mosques")
+    if (key === "school") return categoryT("schools")
+    if (key === "water") return categoryT("waterSanitation")
+    if (key === "community") return categoryT("communityCenters")
+    return t("fallback.category")
   }
 
   return (
@@ -46,11 +57,9 @@ export default async function ImpactPage({
           <div className="max-w-4xl mx-auto text-center mb-24">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-black tracking-widest uppercase mb-6 animate-fade-in">
               <Sparkles className="w-4 h-4" />
-              <span>Measurable Legacy</span>
+              <span>{t('badge')}</span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-brand-deep tracking-tighter leading-[0.9] mb-8">
-              {data.headline || "Our Global Impact"}
-            </h1>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-brand-deep tracking-tighter leading-[0.9] mb-8">{data.headline}</h1>
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium">
               {data.subheadline}
             </p>
@@ -77,7 +86,7 @@ export default async function ImpactPage({
             <div className="space-y-12 mb-32">
               <div className="flex items-center gap-4 mb-8">
                  <div className="h-px flex-1 bg-slate-100" />
-                 <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">Featured Impact Stories</h2>
+                  <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">{t('featuredStoriesTitle')}</h2>
                  <div className="h-px flex-1 bg-slate-100" />
               </div>
               <div className="grid gap-10">
@@ -104,7 +113,7 @@ export default async function ImpactPage({
                        <h3 className="text-3xl md:text-4xl font-black text-brand-deep tracking-tight leading-tight">{story.title}</h3>
                        <p className="text-lg text-slate-500 leading-relaxed font-medium">{story.description}</p>
                        <Button variant="link" className="p-0 text-primary font-black text-lg group-hover:translate-x-2 transition-transform">
-                          Read full story <ArrowRight className="ml-2 w-5 h-5" />
+                          {t('readStory')} <ArrowRight className="ml-2 w-5 h-5" />
                        </Button>
                     </div>
                   </div>
@@ -117,19 +126,19 @@ export default async function ImpactPage({
           <div className="space-y-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                <div>
-                  <h2 className="text-4xl font-black text-brand-deep tracking-tight">Completed Infrastructure</h2>
-                  <p className="text-slate-500 font-medium mt-2">A record of physical transformation across the globe.</p>
+                  <h2 className="text-4xl font-black text-brand-deep tracking-tight">{t('completedInfrastructureTitle')}</h2>
+                  <p className="text-slate-500 font-medium mt-2">{t('completedInfrastructureSubtitle')}</p>
                </div>
                <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-slate-400">
                   <Globe2 className="w-5 h-5 text-primary" />
-                  Global Reach: {allProjects.length} Projects
+                  {t('globalReachLabel', { count: allProjects.length })}
                </div>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {allProjects.length === 0 ? (
                 <div className="col-span-full text-center py-24 bg-slate-50 rounded-[2.5rem] border-2 border-dashed border-slate-200">
-                  <p className="text-slate-400 font-black uppercase tracking-widest text-xs">Awaiting completed project reports</p>
+                  <p className="text-slate-400 font-black uppercase tracking-widest text-xs">{t('emptyProjects')}</p>
                 </div>
               ) : (
                 allProjects.map((project: any) => (
@@ -148,7 +157,7 @@ export default async function ImpactPage({
                         </div>
                       )}
                       <div className="absolute top-6 left-6 px-4 py-2 rounded-xl bg-primary/90 text-white text-[10px] font-black uppercase tracking-widest backdrop-blur-md shadow-lg">
-                        {project.category || 'Infrastructure'}
+                        {getCategory(project.category)}
                       </div>
                     </div>
                     <div className="p-10">
@@ -158,12 +167,12 @@ export default async function ImpactPage({
                       <div className="space-y-3 text-sm text-slate-500 mb-6 font-medium">
                         <div className="flex items-center gap-3">
                           <MapPin className="w-5 h-5 text-primary/40" />
-                          {typeof project.location === 'object' ? (project.location[locale] || project.location.en) : (project.location || 'Global Location')}
+                          {typeof project.location === 'object' ? (project.location[locale] || project.location.en) : (project.location || t('fallback.globalLocation'))}
                         </div>
                         {project.cost && (
                           <div className="flex items-center gap-3 font-bold text-brand-deep">
                             <DollarSign className="w-5 h-5 text-primary" />
-                            ${Number(project.cost).toLocaleString()} Finalized Budget
+                            ${Number(project.cost).toLocaleString()} {t('finalizedBudget')}
                           </div>
                         )}
                       </div>
@@ -171,7 +180,7 @@ export default async function ImpactPage({
                         {typeof project.description === 'object' ? (project.description[locale] || project.description.en) : project.description}
                       </p>
                       <Button asChild variant="outline" className="w-full h-12 rounded-xl border-slate-200 text-brand-deep font-bold hover:bg-slate-50">
-                         <Link href={`/portfolio/${project.id}`}>View Case Study</Link>
+                         <Link href={`/portfolio/${project.id}`}>{t('viewCaseStudy')}</Link>
                       </Button>
                     </div>
                   </Card>
@@ -186,16 +195,16 @@ export default async function ImpactPage({
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-[120px] -ml-48 -mb-48" />
             
             <div className="relative z-10 text-center max-w-3xl mx-auto">
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter leading-tight">Ready to Build Your Eternal Legacy?</h2>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter leading-tight">{t('cta.title')}</h2>
               <p className="text-xl text-blue-100/70 mb-12 font-medium leading-relaxed">
-                Join our community of visionaries building high-impact, transparent infrastructure for communities in need.
+                {t('cta.description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary-600 h-16 px-10 text-lg font-black rounded-2xl shadow-xl shadow-primary/20">
-                  <Link href="/start-project">Start Your Project</Link>
+                  <Link href="/start-project">{t('cta.primary')}</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="h-16 px-10 text-lg font-black rounded-2xl border-white/20 text-white hover:bg-white/10">
-                  <Link href="/contact">Inquire Now</Link>
+                  <Link href="/contact">{t('cta.secondary')}</Link>
                 </Button>
               </div>
             </div>

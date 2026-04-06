@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from '@/lib/navigation';
 import { CheckCircle2, MessageCircle } from 'lucide-react';
-import { createUserWhatsAppLink } from '@/lib/whatsapp';
 
 type OrderStatus = {
   id: string;
   status?: string;
   paymentMethod?: string;
+  whatsappLink?: string | null;
 };
 
 export default function CheckoutSuccessPage() {
@@ -80,9 +80,10 @@ export default function CheckoutSuccessPage() {
               <Button
                 variant="outline"
                 onClick={() => {
-                  const link = createUserWhatsAppLink(orderId || '');
+                  const link = order?.whatsappLink || null;
                   if (link) window.open(link, '_blank');
                 }}
+                disabled={!order?.whatsappLink}
                 className="flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
