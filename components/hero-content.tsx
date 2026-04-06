@@ -93,9 +93,10 @@ export function HeroContent({ data }: { data: any }) {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      {/* 2026 Standard Background: Soft premium gradients */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,82,255,0.05),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(0,209,255,0.05),transparent_50%)]" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+      {/* Premium Background Layers */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,82,255,0.03),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(0,209,255,0.03),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-30" />
 
       <canvas
         ref={canvasRef}

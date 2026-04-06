@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { School, Building2, Droplets, Home, Users, Check, Plus, ShoppingCart, HeartPulse } from "lucide-react"
+import { School, Building2, Droplets, Home, Users, Check, Plus, ShoppingCart, HeartPulse, Moon, Star } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { useTranslations, useLocale } from "next-intl"
@@ -26,6 +26,10 @@ export function WhatWeBuildContent({ projects }: { projects: any[] }) {
     "water": { icon: Droplets, color: "from-gold to-primary", gradient: "bg-gradient-to-br from-gold/20 to-primary/20", label: t("categories.waterSanitation") },
     "Shelters": { icon: Home, color: "from-primary to-gold", gradient: "bg-gradient-to-br from-primary/20 to-gold/20", label: t("categories.shelters") },
     "shelter": { icon: Home, color: "from-primary to-gold", gradient: "bg-gradient-to-br from-primary/20 to-gold/20", label: t("categories.shelters") },
+    "Iftar": { icon: Moon, color: "from-sky-500 to-primary", gradient: "bg-gradient-to-br from-sky-500/20 to-primary/20", label: t("categories.iftar") },
+    "iftar": { icon: Moon, color: "from-sky-500 to-primary", gradient: "bg-gradient-to-br from-sky-500/20 to-primary/20", label: t("categories.iftar") },
+    "Adha": { icon: Star, color: "from-amber-500 to-primary", gradient: "bg-gradient-to-br from-amber-500/20 to-primary/20", label: t("categories.adha") },
+    "adha": { icon: Star, color: "from-amber-500 to-primary", gradient: "bg-gradient-to-br from-amber-500/20 to-primary/20", label: t("categories.adha") },
     "healthcare": { icon: HeartPulse, color: "from-rose-500 to-primary", gradient: "bg-gradient-to-br from-rose-500/20 to-primary/20", label: t("categories.communityCenters") }, // Fallback label
   }
 
@@ -51,7 +55,7 @@ export function WhatWeBuildContent({ projects }: { projects: any[] }) {
 
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
-  }, [projects.length])
+  }, [projects, locale])
 
   const projectList = projects.length > 0 ? projects : [
     { title: t("categories.mosques"), description: "Places of worship built to last generations.", image: "/beautiful-mosque-architecture.jpg", category: "Mosques" },

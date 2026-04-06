@@ -3,6 +3,7 @@
 import { Sparkles, Mail, Phone, MapPin, Instagram, Facebook, Twitter, Linkedin } from "lucide-react"
 import { Link } from "@/lib/navigation"
 import { useTranslations } from "next-intl"
+import Image from 'next/image'
 
 export function SiteFooterContent({ config }: { config: any }) {
   const t = useTranslations()
@@ -20,6 +21,8 @@ export function SiteFooterContent({ config }: { config: any }) {
     sectors: [
       { name: "Mosques", href: "/what-we-build#mosques" },
       { name: "Schools", href: "/what-we-build#schools" },
+      { name: "Iftar Relief", href: "/what-we-build#iftar" },
+      { name: "Eid al-Adha Projects", href: "/what-we-build#adha" },
       { name: "Community Centers", href: "/what-we-build#community-centers" },
       { name: "Water & Sanitation", href: "/what-we-build#water" },
       { name: "Shelters", href: "/what-we-build#shelters" },
@@ -44,7 +47,7 @@ export function SiteFooterContent({ config }: { config: any }) {
               <div className="absolute inset-0 bg-primary/20 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-white border border-slate-800 flex items-center justify-center shadow-lg overflow-hidden transition-transform group-hover:scale-105">
                 {headerConfig.logoUrl ? (
-                  <img src={headerConfig.logoUrl} alt={headerConfig.logoAlt || headerConfig.brandName} className="w-full h-full object-contain p-1" />
+                  <Image src={headerConfig.logoUrl} alt={headerConfig.logoAlt || headerConfig.brandName} width={56} height={56} className="w-full h-full object-contain p-1" />
                 ) : (
                   <div className="bg-primary w-full h-full flex items-center justify-center">
                     <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-white" strokeWidth={2.5} />

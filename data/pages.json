@@ -69,6 +69,7 @@
     "subheadline": "From spiritual centers to educational facilities, we build infrastructure that serves communities for generations",
     "projects": [
       {
+        "id": "mosques",
         "icon": "Building2",
         "title": "Mosques",
         "description": "Build places of worship that serve as spiritual centers for entire communities, creating spaces for prayer, learning, and gathering.",
@@ -81,6 +82,7 @@
         "image": "/beautiful-mosque-architecture.jpg"
       },
       {
+        "id": "schools",
         "icon": "School",
         "title": "Schools & Educational Facilities",
         "description": "Create learning environments that transform lives, providing access to quality education for children and adults.",
@@ -91,6 +93,32 @@
         ],
         "impact": "Education for hundreds of students annually, breaking cycles of poverty for entire communities",
         "image": "/modern-school-exterior.png"
+      },
+      {
+        "id": "iftar",
+        "icon": "Moon",
+        "title": "Iftar Relief Kitchens",
+        "description": "Support Ramadan feeding programs with commercial kitchens and distribution hubs that deliver nutritious iftar meals to families in need.",
+        "benefits": [
+          "Dedicated food prep and delivery infrastructure",
+          "Cold storage, serving stations, and community dining space",
+          "Local volunteer coordination for Ramadan outreach"
+        ],
+        "impact": "Provides thousands of families with warm, reliable iftar meals throughout Ramadan.",
+        "image": "/community-center-facility.jpg"
+      },
+      {
+        "id": "adha",
+        "icon": "Star",
+        "title": "Eid al-Adha Donation Hubs",
+        "description": "Build dedicated Adha distribution hubs for sacrificial donations, halal processing, and transparent delivery to vulnerable households.",
+        "benefits": [
+          "Secure animal welfare and halal processing facilities",
+          "Centralized meat distribution to families in need",
+          "Transparent reporting and community partner coordination"
+        ],
+        "impact": "Enables meaningful Eid al-Adha impact by delivering fresh meat to communities in need with dignity and care.",
+        "image": "/shelter-housing-building.jpg"
       }
     ]
   },

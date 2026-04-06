@@ -5,9 +5,9 @@ import { MapPin, DollarSign, Globe2, Users, Building2, Sparkles, Heart, ArrowRig
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { pages, projects, config } from "@/lib/db"
+import { pages, portfolio, config } from "@/lib/db"
 import Image from "next/image"
+import { Link } from "@/lib/navigation"
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const siteConfig = await config.get()
@@ -25,7 +25,7 @@ export default async function ImpactPage({
   params: { locale: string }
 }) {
   const pageData = await pages.get("impact")
-  const allProjects = await projects.getAll()
+  const allProjects = await portfolio.getAll()
   
   const data = pageData || {
     headline: "Our Global Impact",
@@ -135,9 +135,9 @@ export default async function ImpactPage({
                 allProjects.map((project: any) => (
                   <Card key={project.id} className="overflow-hidden hover:shadow-2xl transition-all duration-500 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm group">
                     <div className="aspect-[4/3] relative overflow-hidden bg-slate-100">
-                      {project.imageUrl ? (
+                      {project.featuredImage || project.imageUrl || project.gallery?.[0] ? (
                         <Image
-                          src={project.imageUrl}
+                          src={project.featuredImage || project.imageUrl || project.gallery?.[0]}
                           alt={typeof project.title === 'object' ? (project.title[locale] || project.title.en) : project.title}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-1000"
@@ -170,8 +170,8 @@ export default async function ImpactPage({
                       <p className="text-slate-500 line-clamp-3 leading-relaxed font-medium text-base mb-8">
                         {typeof project.description === 'object' ? (project.description[locale] || project.description.en) : project.description}
                       </p>
-                      <Button variant="outline" className="w-full h-12 rounded-xl border-slate-200 text-brand-deep font-bold hover:bg-slate-50">
-                         View Case Study
+                      <Button asChild variant="outline" className="w-full h-12 rounded-xl border-slate-200 text-brand-deep font-bold hover:bg-slate-50">
+                         <Link href={`/portfolio/${project.id}`}>View Case Study</Link>
                       </Button>
                     </div>
                   </Card>

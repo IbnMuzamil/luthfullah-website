@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { CartDrawer } from "@/components/cart/CartDrawer"
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 const defaultNavigation = (t: any) => [
   { name: t("about"), href: "/about" },
@@ -53,7 +54,7 @@ export function SiteHeaderContent({ config }: { config: any }) {
               <div className="absolute inset-0 bg-primary/20 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-white border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm overflow-hidden">
                 {headerConfig.logoUrl ? (
-                  <img src={headerConfig.logoUrl} alt={headerConfig.logoAlt || headerConfig.brandName} className="w-full h-full object-contain p-1" />
+                  <Image src={headerConfig.logoUrl} alt={headerConfig.logoAlt || headerConfig.brandName} width={48} height={48} className="w-full h-full object-contain p-1" />
                 ) : (
                   <div className="bg-primary w-full h-full flex items-center justify-center">
                     <Sparkles className="w-5 h-5 md:w-7 md:h-7 text-white" strokeWidth={2.5} />

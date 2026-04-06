@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useCart } from '@/hooks/use-cart';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,8 +16,11 @@ import { ArrowLeft, ShoppingCart, CreditCard, ShieldCheck } from 'lucide-react';
 export default function CheckoutPage() {
   const t = useTranslations('checkout');
   const cartT = useTranslations('cart');
+  const locale = useLocale();
   const { items, totalCost, totalItems } = useCart();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -61,11 +64,46 @@ export default function CheckoutPage() {
     setFormData((prev) => ({ ...prev, paymentMethod: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // This will be handled in Phase 3 Step 12
-    console.log('Order submitted:', { formData, items, totalCost });
-    alert('Checkout processing is coming soon in the next phase!');
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`/api/payments/${formData.paymentMethod}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          locale,
+          customer: {
+            fullName: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+          },
+          items,
+          totalCost,
+          currency: 'USD',
+          returnUrl: `${window.location.origin}/${locale}/checkout/success`,
+          cancelUrl: `${window.location.origin}/${locale}/checkout`,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Payment request failed');
+      }
+
+      if (!data.url) {
+        throw new Error('Payment provider did not return a redirect URL');
+      }
+
+      window.location.href = data.url;
+    } catch (error: any) {
+      setError(error?.message || 'Failed to process payment.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -178,6 +216,11 @@ export default function CheckoutPage() {
                   </RadioGroup>
                 </CardContent>
               </Card>
+              {error ? (
+                <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+                  {error}
+                </div>
+              ) : null}
             </form>
           </div>
 
@@ -224,12 +267,13 @@ export default function CheckoutPage() {
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col gap-4">
-                <Button 
-                  className="w-full h-12 text-lg" 
+                <Button
+                  className="w-full h-12 text-lg"
                   form="checkout-form"
                   type="submit"
+                  disabled={isSubmitting}
                 >
-                  {t('placeOrder')}
+                  {isSubmitting ? `${t('placeOrder')}...` : t('placeOrder')}
                 </Button>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground justify-center">
                   <ShieldCheck className="w-4 h-4" />

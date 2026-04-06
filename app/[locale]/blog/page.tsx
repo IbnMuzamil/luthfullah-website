@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
@@ -129,9 +130,11 @@ export default function BlogPage() {
               <Card className="overflow-hidden bg-card hover:shadow-xl transition-shadow group cursor-pointer">
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="aspect-video md:aspect-auto bg-muted overflow-hidden">
-                    <img
+                    <Image
                       src={articles[0].image || "/placeholder.svg"}
                       alt={articles[0].title}
+                      width={600}
+                      height={400}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -175,9 +178,11 @@ export default function BlogPage() {
                     className="overflow-hidden bg-card hover:shadow-xl transition-shadow group cursor-pointer"
                   >
                     <div className="aspect-video bg-muted overflow-hidden">
-                      <img
+                      <Image
                         src={article.image || "/placeholder.svg"}
                         alt={article.title}
+                        width={400}
+                        height={250}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>

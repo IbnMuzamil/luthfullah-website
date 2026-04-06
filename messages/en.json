@@ -22,6 +22,8 @@
     "stats": {
       "projects": "Projects Completed",
       "countries": "Countries Served",
+      "donors": "Donors Trusted",
+      "impact": "Million USD Impact",
       "transparent": "Transparent"
     }
   },
@@ -52,7 +54,9 @@
       "schools": "Schools",
       "communityCenters": "Community Centers",
       "waterSanitation": "Water & Sanitation",
-      "shelters": "Shelters"
+      "shelters": "Shelters",
+      "iftar": "Iftar Relief",
+      "adha": "Eid al-Adha"
     },
     "addToCart": "Add to Cart",
     "inCart": "In Cart",
@@ -97,6 +101,43 @@
     "orderSummary": "Order Summary",
     "placeOrder": "Place Order",
     "emptyCartMessage": "Your cart is empty. Please add some projects to continue.",
-    "returnToProjects": "Return to Projects"
+    "returnToProjects": "Return to Projects",
+    "successTitle": "Payment Confirmed",
+    "successMessage": "Thank you! Your order is saved and payment is being processed. We will notify you soon.",
+    "orderReference": "Order reference:",
+    "contactSupport": "Contact Support via WhatsApp",
+    "returnHome": "Return Home"
+  },
+  "messages": {
+    "success": "Success",
+    "error": "Error",
+    "loading": "Loading...",
+    "confirm": "Are you sure?",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "save": "Save",
+    "submit": "Submit"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have questions? Get in touch with us.",
+    "successMessage": "Thank you! Your message has been sent successfully.",
+    "errorMessage": "There was an error sending your message. Please try again later.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message"
+  },
+  "startProject": {
+    "title": "Start a Project",
+    "description": "Tell us about your vision and we'll help you turn it into lasting community impact.",
+    "successMessage": "Thank you! Your project request has been submitted successfully.",
+    "errorMessage": "There was an error submitting your request. Please try again or contact us directly.",
+    "projectType": "Project Type",
+    "location": "Location",
+    "budget": "Budget",
+    "deadline": "Timeline",
+    "details": "Project Details",
+    "submit": "Submit Request"
   }
 }

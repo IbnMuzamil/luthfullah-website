@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ClipboardCheck, Hammer, CheckCircle2, ArrowRight } from "lucide-react"
 import { Link } from "@/lib/navigation"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 import { useTranslations } from "next-intl"
 
 export function HowItWorksPreviewContent({ data }: { data: any }) {
@@ -12,7 +12,7 @@ export function HowItWorksPreviewContent({ data }: { data: any }) {
   const [visibleSteps, setVisibleSteps] = useState<number[]>([])
   const sectionRef = useRef<HTMLDivElement>(null)
 
-  const steps = [
+  const steps = useMemo(() => [
     {
       number: "01",
       icon: ClipboardCheck,
@@ -34,7 +34,7 @@ export function HowItWorksPreviewContent({ data }: { data: any }) {
       description: t("steps.step3.description"),
       color: "from-gold to-teal",
     },
-  ]
+  ], [t])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,7 +54,7 @@ export function HowItWorksPreviewContent({ data }: { data: any }) {
 
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
-  }, [steps.length])
+  }, [steps])
 
   return (
     <section

@@ -91,7 +91,7 @@ export function StartProjectContent() {
               Start Your <span className="text-primary">Charity Project</span>
             </h1>
             <p className="text-xl text-muted-foreground text-balance leading-relaxed">
-              Tell us about your vision and we'll help you turn it into lasting community impact
+              Tell us about your vision and we&apos;ll help you turn it into lasting community impact
             </p>
           </div>
         </div>
@@ -284,7 +284,7 @@ export function StartProjectContent() {
                     <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <p className="text-sm text-muted-foreground text-center mt-4">
-                    We'll review your request and get back to you within 24-48 hours with a detailed proposal
+                    We&apos;ll review your request and get back to you within 24-48 hours with a detailed proposal
                   </p>
                 </div>
               </form>

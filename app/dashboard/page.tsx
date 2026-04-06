@@ -34,7 +34,10 @@ import {
   Monitor,
   Phone,
   Tablet,
-  Check
+  Check,
+  Clock,
+  MessageCircle,
+  CreditCard
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
@@ -63,6 +66,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Link from "next/link"
+import Image from "next/image"
 
 // --- Types ---
 
@@ -108,11 +112,15 @@ export default function DashboardPage() {
   const [config, setConfig] = useState<Config | null>(null)
   const [pages, setPages] = useState<any>(null)
   const [projects, setProjects] = useState<any[]>([])
+  const [portfolioItems, setPortfolioItems] = useState<any[]>([])
   const [media, setMedia] = useState<any[]>([])
   const [forms, setForms] = useState<any[]>([])
   const [submissions, setSubmissions] = useState<any[]>([])
+  const [orders, setOrders] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [editingPortfolio, setEditingPortfolio] = useState<any | null>(null)
+  const [portfolioSaving, setPortfolioSaving] = useState(false)
   
   // Page Editing
   const [selectedPageKey, setSelectedPageKey] = useState<string | null>(null)
@@ -126,13 +134,15 @@ export default function DashboardPage() {
   const loadAllData = useCallback(async () => {
     setLoading(true)
     try {
-      const [configRes, pagesRes, projectsRes, mediaRes, formsRes, submissionsRes] = await Promise.all([
+      const [configRes, pagesRes, projectsRes, portfolioRes, mediaRes, formsRes, submissionsRes, ordersRes] = await Promise.all([
         fetch("/api/config"),
         fetch("/api/pages"),
         fetch("/api/projects"),
+        fetch("/api/portfolio-projects"),
         fetch("/api/media"),
         fetch("/api/forms"),
-        fetch("/api/submissions")
+        fetch("/api/submissions"),
+        fetch("/api/orders")
       ])
 
       const configData = await configRes.json()
@@ -142,9 +152,11 @@ export default function DashboardPage() {
       setPages(await pagesRes.json())
       const projs = await projectsRes.json()
       setProjects(projs.data || projs)
+      setPortfolioItems(await portfolioRes.json())
       setMedia(await mediaRes.json())
       setForms(await formsRes.json())
       setSubmissions(await submissionsRes.json())
+      setOrders(await ordersRes.json())
     } catch (error) {
       toast({ title: "Error", description: "Failed to load dashboard data", variant: "destructive" })
     } finally {
@@ -213,6 +225,18 @@ export default function DashboardPage() {
       toast({ title: "Deleted", description: "Media removed from library" })
     } catch (error) {
       toast({ title: "Delete failed", variant: "destructive" })
+    }
+  }
+
+  const deletePortfolioItem = async (id: string) => {
+    try {
+      const response = await fetch(`/api/portfolio-projects?id=${id}`, { method: 'DELETE' })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Failed to delete portfolio project')
+      loadAllData()
+      toast({ title: 'Deleted', description: 'Portfolio project removed from list.' })
+    } catch (error) {
+      toast({ title: 'Delete failed', description: 'Could not remove the portfolio project.', variant: 'destructive' })
     }
   }
 
@@ -296,7 +320,7 @@ export default function DashboardPage() {
         {isImage ? (
           <div className="group relative flex items-center gap-4 p-4 bg-slate-950 rounded-2xl border border-slate-800 hover:border-blue-500/50 transition-all">
             <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-slate-900 flex items-center justify-center flex-shrink-0 border border-slate-800 shadow-inner group-hover:scale-105 transition-transform duration-500">
-              <img src={value || "/placeholder.svg"} alt="Preview" className="w-full h-full object-cover" />
+              <Image src={value || "/placeholder.svg"} alt="Preview" width={80} height={80} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                  <ImageIcon className="w-6 h-6 text-white animate-pulse" />
               </div>
@@ -361,9 +385,10 @@ export default function DashboardPage() {
 
   const menuItems = [
     { id: "overview", label: "Dashboard", icon: LayoutDashboard },
+    { id: "orders", label: "Order Management", icon: ClipboardList },
     { id: "site-config", label: "Global Settings", icon: Settings },
     { id: "pages", label: "Visual CMS", icon: Layers },
-    { id: "projects", label: "Project Manager", icon: Building2 },
+    { id: "portfolio", label: "Portfolio Manager", icon: Building2 },
     { id: "media", label: "Media Engine", icon: ImageIcon },
     { id: "submissions", label: "Leads & Inbox", icon: Mail },
   ]
@@ -543,7 +568,8 @@ export default function DashboardPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {[
                       { label: "Active Pages", value: Object.keys(pages || {}).length, icon: FileText, color: "from-blue-600 to-cyan-500", desc: "Live content entrypoints" },
-                      { label: "Infrastructure", value: projects.length, icon: Building2, color: "from-emerald-600 to-teal-500", desc: "Active building projects" },
+                      { label: "Total Orders", value: orders.length, icon: ClipboardList, color: "from-green-600 to-emerald-500", desc: "Completed transactions" },
+                      { label: "Portfolio Pieces", value: portfolioItems.length, icon: Building2, color: "from-emerald-600 to-teal-500", desc: "Completed project case studies" },
                       { label: "Media Library", value: media.length, icon: ImageIcon, color: "from-amber-600 to-orange-500", desc: "Assets in cloud storage" },
                       { label: "Total Leads", value: submissions.length, icon: Mail, color: "from-purple-600 to-pink-500", desc: "Inbound community requests" },
                     ].map((stat, i) => (
@@ -655,7 +681,7 @@ export default function DashboardPage() {
                            <p className="text-slate-500 text-sm mt-2">Manage your core brand assets and global site settings.</p>
                         </div>
                         <div className="space-y-2">
-                           {["Branding", "Contact", "Hero Defaults", "Visual Theme"].map(item => (
+                           {["Branding", "Contact", "Payment Settings", "Hero Defaults", "Visual Theme"].map(item => (
                              <div key={item} className="flex items-center justify-between p-4 bg-slate-900 rounded-2xl border border-slate-800 cursor-pointer hover:bg-slate-800 transition-colors group">
                                 <span className="text-sm font-bold text-slate-400 group-hover:text-white">{item}</span>
                                 <ChevronRight className="w-4 h-4 text-slate-600" />
@@ -696,7 +722,7 @@ export default function DashboardPage() {
                                <div className="aspect-video rounded-3xl bg-slate-950 border-2 border-dashed border-slate-800 flex flex-col items-center justify-center p-8 transition-all group-hover:border-blue-500/50">
                                   {config.header.logoUrl ? (
                                     <div className="w-full h-full flex items-center justify-center p-4 bg-white rounded-2xl shadow-2xl">
-                                       <img src={config.header.logoUrl} alt="Logo" className="max-h-full object-contain" />
+                                       <Image src={config.header.logoUrl} alt="Logo" width={200} height={100} className="max-h-full object-contain" />
                                     </div>
                                   ) : (
                                     <ImageIcon className="w-12 h-12 text-slate-800 mb-4" />
@@ -715,7 +741,7 @@ export default function DashboardPage() {
                                <div className="aspect-video rounded-3xl bg-slate-950 border-2 border-dashed border-slate-800 flex flex-col items-center justify-center p-8 transition-all group-hover:border-blue-500/50">
                                   {config.faviconUrl ? (
                                     <div className="w-20 h-20 bg-white p-3 rounded-2xl shadow-2xl flex items-center justify-center">
-                                       <img src={config.faviconUrl} alt="Favicon" className="w-full h-full object-contain" />
+                                       <Image src={config.faviconUrl} alt="Favicon" width={64} height={64} className="w-full h-full object-contain" />
                                     </div>
                                   ) : (
                                     <Component className="w-12 h-12 text-slate-800 mb-4" />
@@ -800,6 +826,107 @@ export default function DashboardPage() {
                                />
                             </div>
                          </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="bg-slate-900 border-slate-800 shadow-2xl overflow-hidden">
+                      <CardHeader className="p-8 bg-slate-950/50 border-b border-slate-800">
+                        <CardTitle className="text-white text-2xl font-black tracking-tight">Payment Configuration</CardTitle>
+                        <CardDescription>Stripe and Paystack API keys and webhook secrets</CardDescription>
+                      </CardHeader>
+                      <CardContent className="p-10 space-y-8">
+                        <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="w-8 h-8 bg-amber-500/20 rounded-xl flex items-center justify-center">
+                              <Settings className="w-4 h-4 text-amber-500" />
+                            </div>
+                            <h4 className="text-lg font-black text-amber-400">Environment Variables Required</h4>
+                          </div>
+                          <p className="text-sm text-amber-200 font-medium leading-relaxed">
+                            These settings are stored as environment variables. Update your <code className="bg-amber-500/20 px-2 py-1 rounded text-xs font-mono">.env.local</code> file with the following keys:
+                          </p>
+                          <div className="mt-4 space-y-2 font-mono text-xs bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <div className="text-slate-400"># Stripe Configuration</div>
+                            <div className="text-green-400">STRIPE_SECRET_KEY=sk_test_...</div>
+                            <div className="text-green-400">STRIPE_WEBHOOK_SECRET=whsec_...</div>
+                            <div className="text-slate-400 mt-3"># Paystack Configuration</div>
+                            <div className="text-green-400">PAYSTACK_SECRET_KEY=sk_test_...</div>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-2">
+                              <div className="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <CreditCard className="w-4 h-4 text-blue-400" />
+                              </div>
+                              <Label className="text-sm font-black text-white">Stripe Settings</Label>
+                            </div>
+                            <div className="space-y-3">
+                              <div>
+                                <Label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Secret Key</Label>
+                                <Input
+                                  type="password"
+                                  placeholder="sk_test_..."
+                                  className="bg-slate-950 border-slate-800 h-12 text-white rounded-xl font-mono text-sm"
+                                  value={process.env.STRIPE_SECRET_KEY || ''}
+                                  readOnly
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Webhook Secret</Label>
+                                <Input
+                                  type="password"
+                                  placeholder="whsec_..."
+                                  className="bg-slate-950 border-slate-800 h-12 text-white rounded-xl font-mono text-sm"
+                                  value={process.env.STRIPE_WEBHOOK_SECRET || ''}
+                                  readOnly
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-2">
+                              <div className="w-8 h-8 bg-green-600/20 rounded-lg flex items-center justify-center">
+                                <Globe className="w-4 h-4 text-green-400" />
+                              </div>
+                              <Label className="text-sm font-black text-white">Paystack Settings</Label>
+                            </div>
+                            <div className="space-y-3">
+                              <div>
+                                <Label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Secret Key</Label>
+                                <Input
+                                  type="password"
+                                  placeholder="sk_test_..."
+                                  className="bg-slate-950 border-slate-800 h-12 text-white rounded-xl font-mono text-sm"
+                                  value={process.env.PAYSTACK_SECRET_KEY || ''}
+                                  readOnly
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-slate-900/50 rounded-2xl p-6 border border-slate-800">
+                          <h4 className="text-lg font-black text-white mb-4">Webhook Endpoints</h4>
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between p-3 bg-slate-950 rounded-xl border border-slate-800">
+                              <div>
+                                <p className="text-sm font-bold text-white">Stripe Webhook</p>
+                                <p className="text-xs text-slate-500 font-mono">/api/payments/stripe/webhook</p>
+                              </div>
+                              <Badge className="bg-blue-600/10 text-blue-400 border-blue-500/20">Active</Badge>
+                            </div>
+                            <div className="flex items-center justify-between p-3 bg-slate-950 rounded-xl border border-slate-800">
+                              <div>
+                                <p className="text-sm font-bold text-white">Paystack Webhook</p>
+                                <p className="text-xs text-slate-500 font-mono">/api/payments/paystack/webhook</p>
+                              </div>
+                              <Badge className="bg-green-600/10 text-green-400 border-green-500/20">Active</Badge>
+                            </div>
+                          </div>
+                        </div>
                       </CardContent>
                     </Card>
 
@@ -949,7 +1076,7 @@ export default function DashboardPage() {
                         <Card key={i} className="bg-slate-900 border-slate-800 overflow-hidden group hover:border-slate-600 transition-all duration-500 rounded-[2rem] shadow-xl hover:shadow-2xl">
                           <div className="aspect-square relative bg-slate-950 flex items-center justify-center overflow-hidden">
                             {file.type?.startsWith('image/') ? (
-                              <img src={file.url} alt={file.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                              <Image src={file.url} alt={file.name} width={300} height={300} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                             ) : (
                               <FileText className="w-16 h-16 text-slate-800" />
                             )}
@@ -987,6 +1114,378 @@ export default function DashboardPage() {
                       ))
                     )}
                   </div>
+                </div>
+              )}
+
+              {/* --- PORTFOLIO MANAGER --- */}
+              {activeTab === "portfolio" && (
+                <div className="space-y-10">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                    <div>
+                      <h2 className="text-4xl font-black text-white tracking-tight">Portfolio Manager</h2>
+                      <p className="text-slate-500 mt-2 font-medium">Add, edit, and showcase completed work from this dashboard tab.</p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                      <Button variant="outline" onClick={() => setEditingPortfolio({ title: '', description: '', featuredImage: '', location: '', client: '', category: '', cost: '', benefit: '', status: 'completed', completionDate: new Date().toISOString().slice(0, 10) })} className="rounded-xl border-slate-800 hover:bg-slate-800 text-slate-400 hover:text-white">
+                        <Plus className="w-4 h-4 mr-2" /> New Portfolio Case
+                      </Button>
+                      <Button onClick={loadAllData} variant="outline" className="rounded-xl border-slate-800 hover:bg-slate-800 text-slate-400 hover:text-white">
+                        <RefreshCw className="w-4 h-4 mr-2" /> Refresh
+                      </Button>
+                    </div>
+                  </div>
+
+                  {editingPortfolio && (
+                    <Card className="bg-slate-900 border-slate-800 shadow-2xl overflow-hidden">
+                      <CardHeader className="p-8 bg-slate-950/50 border-b border-slate-800 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                        <div>
+                          <CardTitle className="text-white text-2xl font-black tracking-tight">{editingPortfolio.id ? 'Edit Portfolio Project' : 'Add New Portfolio Project'}</CardTitle>
+                          <CardDescription>{editingPortfolio.id ? 'Update fields and commit changes.' : 'Create a new completed project entry for the public portfolio.'}</CardDescription>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Button variant="ghost" size="sm" className="rounded-xl text-slate-400 hover:text-white" onClick={() => setEditingPortfolio(null)}>
+                            Cancel
+                          </Button>
+                          <Button onClick={async () => {
+                            setPortfolioSaving(true)
+                            try {
+                              const method = editingPortfolio.id ? 'PATCH' : 'POST'
+                              const response = await fetch('/api/portfolio-projects', {
+                                method,
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(editingPortfolio),
+                              })
+                              const data = await response.json()
+                              if (!response.ok) throw new Error(data.error || 'Failed to save portfolio item')
+                              toast({ title: 'Saved', description: editingPortfolio.id ? 'Portfolio project updated.' : 'New portfolio project created.' })
+                              setEditingPortfolio(null)
+                              loadAllData()
+                            } catch {
+                              toast({ title: 'Error', description: 'Could not save portfolio project.', variant: 'destructive' })
+                            } finally {
+                              setPortfolioSaving(false)
+                            }
+                          }} disabled={portfolioSaving} className="rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-6">
+                            {portfolioSaving ? <RefreshCw className="w-4 h-4 animate-spin mr-2" /> : <Save className="w-4 h-4 mr-2" />} Save Case
+                          </Button>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="p-10 space-y-8">
+                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                          <div className="space-y-6">
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Project Title</Label>
+                              <Input value={editingPortfolio.title || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, title: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Location</Label>
+                              <Input value={editingPortfolio.location || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, location: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Client</Label>
+                              <Input value={editingPortfolio.client || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, client: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Category</Label>
+                              <Input value={editingPortfolio.category || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, category: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Status</Label>
+                              <Input value={editingPortfolio.status || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, status: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                          </div>
+                          <div className="space-y-6">
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Project Cost</Label>
+                              <Input value={editingPortfolio.cost || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, cost: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Cost Benefit</Label>
+                              <Input value={editingPortfolio.benefit || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, benefit: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Completion Date</Label>
+                              <Input type="date" value={editingPortfolio.completionDate || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, completionDate: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <div>
+                              <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Featured Image URL</Label>
+                              <Input value={editingPortfolio.featuredImage || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, featuredImage: e.target.value })} className="bg-slate-950 border-slate-800 h-14 rounded-2xl" />
+                            </div>
+                            <Button size="sm" variant="secondary" className="w-full rounded-xl h-14" onClick={() => openMediaPicker((url) => setEditingPortfolio({ ...editingPortfolio, featuredImage: url }))}>
+                              <ImageIcon className="w-4 h-4 mr-2" /> Select From Media Library
+                            </Button>
+                          </div>
+                        </div>
+                        <div>
+                          <Label className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Project Description</Label>
+                          <Textarea value={editingPortfolio.description || ''} onChange={(e) => setEditingPortfolio({ ...editingPortfolio, description: e.target.value })} className="bg-slate-950 border-slate-800 rounded-3xl min-h-[160px]" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  <div className="grid gap-6 xl:grid-cols-2">
+                    {portfolioItems.length === 0 ? (
+                      <Card className="bg-slate-900 border-slate-800 p-10 text-center">
+                        <p className="text-slate-500">No portfolio projects yet. Start by adding a new case above.</p>
+                      </Card>
+                    ) : (
+                      portfolioItems.map((item) => (
+                        <Card key={item.id} className="bg-slate-900 border-slate-800 shadow-2xl overflow-hidden">
+                          <div className="relative aspect-[4/3] bg-slate-950">
+                            {item.featuredImage ? (
+                              <Image src={item.featuredImage} alt={item.title || 'Portfolio item'} width={400} height={300} className="w-full h-full object-cover" />
+                            ) : (
+                              <div className="flex items-center justify-center h-full text-slate-500">No image</div>
+                            )}
+                          </div>
+                          <CardContent className="p-6 space-y-4">
+                            <div className="flex items-center justify-between gap-4">
+                              <div>
+                                <p className="text-xs uppercase tracking-[0.3em] text-slate-500 font-black">{item.status || 'Completed'}</p>
+                                <h3 className="text-xl font-black text-white tracking-tight mt-2">{item.title || 'Untitled Project'}</h3>
+                              </div>
+                              <div className="text-right text-slate-400 text-xs">
+                                {item.completionDate ? new Date(item.completionDate).toLocaleDateString() : 'No date'}
+                              </div>
+                            </div>
+                            <p className="text-sm text-slate-400 line-clamp-3">{item.description || 'No description added yet.'}</p>
+                            <div className="grid grid-cols-2 gap-3 text-sm text-slate-500">
+                              <div className="rounded-2xl bg-slate-950 p-3 border border-slate-800">
+                                <p className="font-black text-white">Location</p>
+                                <p>{item.location || '—'}</p>
+                              </div>
+                              <div className="rounded-2xl bg-slate-950 p-3 border border-slate-800">
+                                <p className="font-black text-white">Cost</p>
+                                <p>${Number(item.cost || 0).toLocaleString()}</p>
+                              </div>
+                            </div>
+                            <div className="flex flex-wrap gap-3">
+                              <Button size="sm" variant="outline" className="rounded-xl" onClick={() => setEditingPortfolio(item)}>
+                                <Edit className="w-4 h-4 mr-2" /> Edit
+                              </Button>
+                              <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                  <Button size="sm" variant="ghost" className="rounded-xl text-red-400 border border-red-500/20 hover:bg-red-500/10">
+                                    <Trash2 className="w-4 h-4 mr-2" /> Delete
+                                  </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent className="bg-slate-950 border border-slate-800 text-white rounded-[2rem] p-10">
+                                  <AlertDialogTitle className="text-2xl font-black">Remove Portfolio Project</AlertDialogTitle>
+                                  <AlertDialogDescription className="text-slate-500 mt-2 font-medium">
+                                    This will permanently delete the portfolio project and remove it from the live site.
+                                  </AlertDialogDescription>
+                                  <div className="flex justify-end gap-4 mt-10">
+                                    <AlertDialogCancel className="bg-slate-900 border border-slate-800 text-white hover:bg-slate-800 rounded-xl px-8 h-12 font-bold">Cancel</AlertDialogCancel>
+                                    <AlertDialogAction className="bg-red-600 hover:bg-red-700 text-white rounded-xl px-8 h-12 font-bold" onClick={() => deletePortfolioItem(item.id)}>
+                                      Confirm Delete
+                                    </AlertDialogAction>
+                                  </div>
+                                </AlertDialogContent>
+                              </AlertDialog>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* --- ORDERS --- */}
+              {activeTab === "orders" && (
+                <div className="space-y-10">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h2 className="text-4xl font-black text-white tracking-tight">Order Management</h2>
+                      <p className="text-slate-500 mt-2 font-medium">Track all transactions and payment processing.</p>
+                    </div>
+                    <Button onClick={loadAllData} variant="outline" className="rounded-xl border-slate-800 hover:bg-slate-800 text-slate-400 hover:text-white">
+                      <RefreshCw className="w-4 h-4 mr-2" />
+                      Refresh Orders
+                    </Button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    {[
+                      { label: "Total Orders", value: orders.length, icon: ClipboardList, color: "from-blue-600 to-cyan-500" },
+                      { label: "Paid Orders", value: orders.filter(o => o.status === 'paid').length, icon: CheckCircle2, color: "from-green-600 to-emerald-500" },
+                      { label: "Pending Orders", value: orders.filter(o => o.status === 'pending').length, icon: Clock, color: "from-amber-600 to-orange-500" },
+                    ].map((stat, i) => (
+                      <Card key={i} className="bg-slate-900 border-slate-800 overflow-hidden group hover:border-slate-700 transition-all duration-300">
+                        <div className={`h-1 w-full bg-gradient-to-r ${stat.color}`} />
+                        <CardContent className="p-8">
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <p className="text-xs font-black text-slate-500 uppercase tracking-[0.2em]">{stat.label}</p>
+                              <h3 className="text-4xl font-black text-white mt-2 tracking-tighter">{stat.value}</h3>
+                            </div>
+                            <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 group-hover:scale-110 transition-transform">
+                               <stat.icon className="w-6 h-6 text-slate-400" />
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+
+                  <Card className="bg-slate-900 border-slate-800 shadow-2xl overflow-hidden rounded-[2.5rem]">
+                    <CardContent className="p-0">
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="border-b border-slate-800 bg-slate-950/50">
+                              <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-[0.2em]">Order ID</th>
+                              <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-[0.2em]">Customer</th>
+                              <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-[0.2em]">Amount</th>
+                              <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-[0.2em]">Status</th>
+                              <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-[0.2em]">Payment Method</th>
+                              <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-[0.2em]">Date</th>
+                              <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-[0.2em] text-right">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {orders.length === 0 ? (
+                              <tr>
+                                <td colSpan={7} className="p-20 text-center text-slate-600 font-bold tracking-widest uppercase text-xs italic">No orders received yet.</td>
+                              </tr>
+                            ) : (
+                              orders.map((order, i) => (
+                                <tr key={i} className="border-b border-slate-800/50 hover:bg-slate-800/20 transition-all duration-300 group">
+                                  <td className="p-6 text-sm font-bold text-slate-400">#{order.id?.slice(-8)}</td>
+                                  <td className="p-6 text-sm font-black text-white">
+                                    {order.customer?.fullName || 'N/A'}
+                                    <br />
+                                    <span className="text-xs text-slate-500 font-medium">{order.customer?.email}</span>
+                                  </td>
+                                  <td className="p-6 text-sm font-bold text-green-400">${order.totalCost?.toLocaleString()}</td>
+                                  <td className="p-6 text-sm">
+                                    <Badge className={
+                                      order.status === 'paid' ? "bg-green-600/10 text-green-400 border-green-500/20" :
+                                      order.status === 'pending' ? "bg-amber-600/10 text-amber-400 border-amber-500/20" :
+                                      "bg-red-600/10 text-red-400 border-red-500/20"
+                                    }>
+                                      {order.status || 'unknown'}
+                                    </Badge>
+                                  </td>
+                                  <td className="p-6 text-sm font-bold text-slate-400 capitalize">{order.paymentMethod || 'N/A'}</td>
+                                  <td className="p-6 text-sm font-medium text-slate-500">{new Date(order.createdAt).toLocaleDateString()}</td>
+                                  <td className="p-6 text-right">
+                                    <div className="flex items-center justify-end gap-2">
+                                      {order.whatsappLink && (
+                                        <Button 
+                                          size="sm" 
+                                          variant="ghost" 
+                                          className="h-10 w-10 rounded-xl text-green-500 hover:text-white hover:bg-green-600 transition-all"
+                                          onClick={() => window.open(order.whatsappLink, '_blank')}
+                                          title="Send WhatsApp notification"
+                                        >
+                                          <MessageCircle className="w-4 h-4" />
+                                        </Button>
+                                      )}
+                                      <Dialog>
+                                        <DialogTrigger asChild>
+                                          <Button size="sm" variant="ghost" className="h-10 w-10 rounded-xl text-slate-500 hover:text-white hover:bg-slate-800 transition-all">
+                                            <Eye className="w-4 h-4" />
+                                          </Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="bg-slate-950 border border-slate-800 text-white max-w-4xl rounded-[3rem] p-10 overflow-hidden">
+                                          <DialogHeader className="mb-8">
+                                            <DialogTitle className="text-3xl font-black tracking-tight">Order Details</DialogTitle>
+                                            <DialogDescription className="text-slate-500 font-bold mt-2 uppercase tracking-widest text-xs">
+                                              Order #{order.id} • {new Date(order.createdAt).toLocaleString()}
+                                            </DialogDescription>
+                                          </DialogHeader>
+                                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                            <div className="space-y-6">
+                                              <div>
+                                                <h4 className="text-lg font-black text-white mb-4">Customer Information</h4>
+                                                <div className="space-y-3">
+                                                  <div className="flex justify-between">
+                                                    <span className="text-slate-500">Name:</span>
+                                                    <span className="text-white font-bold">{order.customer?.fullName || 'N/A'}</span>
+                                                  </div>
+                                                  <div className="flex justify-between">
+                                                    <span className="text-slate-500">Email:</span>
+                                                    <span className="text-white font-bold">{order.customer?.email || 'N/A'}</span>
+                                                  </div>
+                                                  <div className="flex justify-between">
+                                                    <span className="text-slate-500">Phone:</span>
+                                                    <span className="text-white font-bold">{order.customer?.phone || 'N/A'}</span>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div>
+                                                <h4 className="text-lg font-black text-white mb-4">Payment Details</h4>
+                                                <div className="space-y-3">
+                                                  <div className="flex justify-between">
+                                                    <span className="text-slate-500">Method:</span>
+                                                    <span className="text-white font-bold capitalize">{order.paymentMethod || 'N/A'}</span>
+                                                  </div>
+                                                  <div className="flex justify-between">
+                                                    <span className="text-slate-500">Status:</span>
+                                                    <Badge className={
+                                                      order.status === 'paid' ? "bg-green-600/10 text-green-400 border-green-500/20" :
+                                                      order.status === 'pending' ? "bg-amber-600/10 text-amber-400 border-amber-500/20" :
+                                                      "bg-red-600/10 text-red-400 border-red-500/20"
+                                                    }>
+                                                      {order.status || 'unknown'}
+                                                    </Badge>
+                                                  </div>
+                                                  <div className="flex justify-between">
+                                                    <span className="text-slate-500">Total:</span>
+                                                    <span className="text-green-400 font-bold">${order.totalCost?.toLocaleString()}</span>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div className="space-y-6">
+                                              <div>
+                                                <h4 className="text-lg font-black text-white mb-4">Order Items</h4>
+                                                <div className="space-y-3">
+                                                  {order.items?.map((item, idx) => (
+                                                    <div key={idx} className="flex items-center gap-4 p-3 bg-slate-900 rounded-xl border border-slate-800">
+                                                      <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center">
+                                                        <Building2 className="w-6 h-6 text-slate-400" />
+                                                      </div>
+                                                      <div className="flex-1">
+                                                        <p className="text-white font-bold text-sm">{item.title}</p>
+                                                        <p className="text-slate-500 text-xs">{item.location}</p>
+                                                      </div>
+                                                      <div className="text-right">
+                                                        <p className="text-green-400 font-bold">${item.cost?.toLocaleString()}</p>
+                                                        <p className="text-slate-500 text-xs">Qty: {item.quantity || 1}</p>
+                                                      </div>
+                                                    </div>
+                                                  )) || <p className="text-slate-500 italic">No items found</p>}
+                                                </div>
+                                              </div>
+                                              {order.whatsappLink && (
+                                                <div>
+                                                  <h4 className="text-lg font-black text-white mb-4">Quick Actions</h4>
+                                                  <Button 
+                                                    className="w-full bg-green-600 hover:bg-green-700 h-12 rounded-xl font-bold text-white flex items-center gap-2"
+                                                    onClick={() => window.open(order.whatsappLink, '_blank')}
+                                                  >
+                                                    <MessageCircle className="w-4 h-4" />
+                                                    Send WhatsApp Notification
+                                                  </Button>
+                                                </div>
+                                              )}
+                                            </div>
+                                          </div>
+                                        </DialogContent>
+                                      </Dialog>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               )}
 
@@ -1099,7 +1598,7 @@ export default function DashboardPage() {
                          }}
                        >
                           {file.type?.startsWith('image/') ? (
-                             <img src={file.url} alt={file.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                             <Image src={file.url} alt={file.name} width={200} height={200} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
                           ) : (
                              <FileText className="w-10 h-10 text-slate-700 m-auto mt-10" />
                           )}

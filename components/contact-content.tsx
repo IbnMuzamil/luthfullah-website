@@ -107,7 +107,7 @@ export function ContactContent() {
                 <div>
                   <h2 className="text-3xl font-bold mb-6">Contact Information</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    We're here to answer your questions and help you start building lasting impact.
+                    We&apos;re here to answer your questions and help you start building lasting impact.
                   </p>
                 </div>
 
@@ -154,7 +154,7 @@ export function ContactContent() {
                 <Card className="p-8 md:p-10 bg-card">
                   <h2 className="text-3xl font-bold mb-2">Send Us a Message</h2>
                   <p className="text-muted-foreground mb-8">
-                    Fill out the form below and we'll get back to you as soon as possible
+                    Fill out the form below and we&apos;ll get back to you as soon as possible
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">

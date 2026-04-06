@@ -15,7 +15,9 @@ const SUBMISSIONS_DB = path.join(DATA_DIR, 'submissions.json');
 const PAGES_DB = path.join(DATA_DIR, 'pages.json');
 const MEDIA_DB = path.join(DATA_DIR, 'media.json');
 const PROJECTS_DB = path.join(DATA_DIR, 'projects.json');
+const PORTFOLIO_DB = path.join(DATA_DIR, 'portfolio.json');
 const CONFIG_DB = path.join(DATA_DIR, 'config.json');
+const ORDERS_DB = path.join(DATA_DIR, 'orders.json');
 
 // Initialize databases if they don't exist
 const initializeDB = () => {
@@ -23,6 +25,8 @@ const initializeDB = () => {
   if (!fs.existsSync(SUBMISSIONS_DB)) fs.writeFileSync(SUBMISSIONS_DB, JSON.stringify([], null, 2));
   if (!fs.existsSync(MEDIA_DB)) fs.writeFileSync(MEDIA_DB, JSON.stringify([], null, 2));
   if (!fs.existsSync(PROJECTS_DB)) fs.writeFileSync(PROJECTS_DB, JSON.stringify([], null, 2));
+  if (!fs.existsSync(PORTFOLIO_DB)) fs.writeFileSync(PORTFOLIO_DB, JSON.stringify([], null, 2));
+  if (!fs.existsSync(ORDERS_DB)) fs.writeFileSync(ORDERS_DB, JSON.stringify([], null, 2));
   
   // Note: PAGES_DB and CONFIG_DB are assumed to be initialized by the setup scripts or existing content
 };
@@ -133,6 +137,61 @@ export const projects = {
   },
   delete: (id: string) => {
     saveToFile(PROJECTS_DB, projects.getAll().filter((p: any) => p.id !== id));
+  }
+};
+
+// Portfolio
+export const portfolio = {
+  getAll: () => JSON.parse(fs.readFileSync(PORTFOLIO_DB, 'utf-8')),
+  getById: (id: string) => portfolio.getAll().find((item: any) => item.id === id),
+  create: (item: any) => {
+    const all = portfolio.getAll();
+    const newItem = { ...item, id: uuidv4(), createdAt: new Date().toISOString(), status: item.status || 'completed' };
+    all.push(newItem);
+    saveToFile(PORTFOLIO_DB, all);
+    return newItem;
+  },
+  update: (id: string, updates: any) => {
+    const all = portfolio.getAll();
+    const idx = all.findIndex((item: any) => item.id === id);
+    if (idx === -1) throw new Error('Not found');
+    all[idx] = { ...all[idx], ...updates, updatedAt: new Date().toISOString() };
+    saveToFile(PORTFOLIO_DB, all);
+    return all[idx];
+  },
+  delete: (id: string) => {
+    saveToFile(PORTFOLIO_DB, portfolio.getAll().filter((item: any) => item.id !== id));
+  }
+};
+
+// Orders
+export const orders = {
+  getAll: () => JSON.parse(fs.readFileSync(ORDERS_DB, 'utf-8')),
+  getById: (id: string) => orders.getAll().find((order: any) => order.id === id),
+  getByPaymentSessionId: (paymentSessionId: string) =>
+    orders.getAll().find((order: any) => order.paymentSessionId === paymentSessionId),
+  create: (order: any) => {
+    const all = orders.getAll();
+    const item = {
+      ...order,
+      id: uuidv4(),
+      status: order.status || 'pending',
+      createdAt: new Date().toISOString(),
+    };
+    all.push(item);
+    saveToFile(ORDERS_DB, all);
+    return item;
+  },
+  update: (id: string, updates: any) => {
+    const all = orders.getAll();
+    const idx = all.findIndex((o: any) => o.id === id);
+    if (idx === -1) throw new Error('Not found');
+    all[idx] = { ...all[idx], ...updates, updatedAt: new Date().toISOString() };
+    saveToFile(ORDERS_DB, all);
+    return all[idx];
+  },
+  delete: (id: string) => {
+    saveToFile(ORDERS_DB, orders.getAll().filter((o: any) => o.id !== id));
   }
 };
 

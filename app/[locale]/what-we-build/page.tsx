@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Link } from "@/lib/navigation"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { pages, config } from "@/lib/db"
@@ -61,6 +61,7 @@ export default async function WhatWeBuildPage() {
 
                 return (
                   <div
+                    id={project.id ?? project.title?.toString().toLowerCase().replace(/[^a-z0-9]+/g, "-")}
                     key={index}
                     className={`grid lg:grid-cols-2 gap-16 items-center ${!isEven ? "lg:flex-row-reverse" : ""}`}
                   >
@@ -101,7 +102,7 @@ export default async function WhatWeBuildPage() {
                       <p className="text-xl text-slate-500 leading-relaxed font-medium">{project.description}</p>
 
                       <div className="space-y-4">
-                        <h3 className="font-black text-brand-deep text-sm uppercase tracking-widest opacity-40">What's Included:</h3>
+                        <h3 className="font-black text-brand-deep text-sm uppercase tracking-widest opacity-40">What&apos;s Included:</h3>
                         <div className="grid gap-3">
                           {project.benefits?.map((benefit: string, i: number) => (
                             <div key={i} className="flex items-start gap-4 text-slate-600 font-bold group">

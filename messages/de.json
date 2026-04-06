@@ -22,6 +22,8 @@
     "stats": {
       "projects": "Abgeschlossene Projekte",
       "countries": "Bediente Länder",
+      "donors": "Vertrauenswürdige Spender",
+      "impact": "Millionen USD Impact",
       "transparent": "Transparent"
     }
   },
@@ -52,7 +54,9 @@
       "schools": "Schulen",
       "communityCenters": "Gemeindezentren",
       "waterSanitation": "Wasser & Sanitär",
-      "shelters": "Unterkünfte"
+      "shelters": "Unterkünfte",
+      "iftar": "Iftar-Verteilung",
+      "adha": "Eid al-Adha"
     },
     "addToCart": "In den Warenkorb",
     "inCart": "Im Warenkorb",
@@ -97,6 +101,43 @@
     "orderSummary": "Bestellübersicht",
     "placeOrder": "Bestellung aufgeben",
     "emptyCartMessage": "Ihr Warenkorb ist leer. Bitte fügen Sie einige Projekte hinzu, um fortzufahren.",
-    "returnToProjects": "Zurück zu den Projekten"
+    "returnToProjects": "Zurück zu den Projekten",
+    "successTitle": "Zahlung bestätigt",
+    "successMessage": "Danke! Ihre Bestellung wurde gespeichert und die Zahlung wird verarbeitet. Wir benachrichtigen Sie in Kürze.",
+    "orderReference": "Bestellnummer:",
+    "contactSupport": "Support über WhatsApp kontaktieren",
+    "returnHome": "Zurück zur Startseite"
+  },
+  "messages": {
+    "success": "Erfolg",
+    "error": "Fehler",
+    "loading": "Wird geladen...",
+    "confirm": "Bist du sicher?",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "save": "Speichern",
+    "submit": "Absenden"
+  },
+  "contact": {
+    "title": "Kontaktiere uns",
+    "description": "Hast du Fragen? Setze dich mit uns in Verbindung.",
+    "successMessage": "Danke! Deine Nachricht wurde erfolgreich versendet.",
+    "errorMessage": "Es gab einen Fehler beim Versenden deiner Nachricht. Bitte versuche es später erneut.",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "send": "Nachricht senden"
+  },
+  "startProject": {
+    "title": "Starten Sie ein Projekt",
+    "description": "Erzählen Sie uns von Ihrer Vision und wir helfen Ihnen, sie in bleibende Gemeinschaftsauswirkungen umzuwandeln.",
+    "successMessage": "Danke! Ihr Projektantrag wurde erfolgreich eingereicht.",
+    "errorMessage": "Es gab einen Fehler beim Absenden Ihres Antrags. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+    "projectType": "Projekttyp",
+    "location": "Standort",
+    "budget": "Budget",
+    "deadline": "Zeitrahmen",
+    "details": "Projektdetails",
+    "submit": "Antrag einreichen"
   }
 }

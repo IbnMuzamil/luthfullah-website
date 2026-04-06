@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { ShoppingCart, Trash2 } from 'lucide-react';
 import { Link } from '@/lib/navigation';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import Image from 'next/image';
 
 export function CartDrawer({ children }: { children?: React.ReactNode }) {
   const { items, removeItem, totalCost, totalItems } = useCart();
@@ -60,9 +61,11 @@ export function CartDrawer({ children }: { children?: React.ReactNode }) {
                 {items.map((item) => (
                   <div key={item.id} className="flex gap-4 group">
                     <div className="w-24 h-24 rounded-2xl bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-100 shadow-sm">
-                      <img
+                      <Image
                         src={item.imageUrl}
                         alt={item.title}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>

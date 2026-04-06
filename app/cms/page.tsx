@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Trash2, Plus, Eye, Download, Upload, Settings } from 'lucide-react';
+import Image from 'next/image';
 
 export default function SuperAdmin() {
   const [activeTab, setActiveTab] = useState('forms');
@@ -20,11 +21,7 @@ export default function SuperAdmin() {
   const [editingPage, setEditingPage] = useState<any>(null);
 
   // Load all data
-  useEffect(() => {
-    loadData();
-  }, [activeTab]);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true);
     try {
       if (activeTab === 'forms' || activeTab === 'submissions') {
@@ -47,7 +44,11 @@ export default function SuperAdmin() {
       console.error('Failed to load data:', error);
     }
     setLoading(false);
-  };
+  }, [activeTab]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   // Forms Tab
   const handleCreateForm = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -352,7 +353,7 @@ export default function SuperAdmin() {
               {media.map((item) => (
                 <Card key={item.id} className="bg-slate-800 border-slate-700 overflow-hidden">
                   {item.type.startsWith('image/') && (
-                    <img src={item.url} alt={item.originalName} className="w-full h-48 object-cover" />
+                    <Image src={item.url} alt={item.originalName} width={300} height={192} className="w-full h-48 object-cover" />
                   )}
                   <CardContent className="pt-4">
                     <p className="text-white text-sm truncate">{item.originalName}</p>

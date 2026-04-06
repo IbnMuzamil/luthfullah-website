@@ -2,6 +2,8 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { HeroSection } from "@/components/hero-section"
 import { HowItWorksPreview } from "@/components/how-it-works-preview"
+import { ImpactStats } from "@/components/impact-stats"
+import { RecentPortfolioProjects } from "@/components/recent-portfolio-projects"
 import { WhatWeBuildSection } from "@/components/what-we-build-section"
 import { pages } from "@/lib/db"
 
@@ -14,6 +16,8 @@ export default async function HomePage() {
       <main className="min-h-screen">
         <HeroSection data={pageData?.hero} />
         <HowItWorksPreview />
+        <ImpactStats />
+        <RecentPortfolioProjects />
         <WhatWeBuildSection />
       </main>
       <SiteFooter />

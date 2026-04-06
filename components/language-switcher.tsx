@@ -1,7 +1,8 @@
 'use client';
 
 import {useLocale} from 'next-intl';
-import {usePathname, useRouter} from '@/lib/navigation';
+import {usePathname} from '@/lib/navigation';
+import {useCallback} from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,9 +12,10 @@ import {
 import {Button} from '@/components/ui/button';
 import {Globe} from 'lucide-react';
 
+const LOCALES = ['en', 'ar', 'de'] as const;
+
 export function LanguageSwitcher() {
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
 
   const languages = [
@@ -22,16 +24,25 @@ export function LanguageSwitcher() {
     {code: 'de', label: 'Deutsch', flag: '🇩🇪'},
   ];
 
-  const handleLanguageChange = (newLocale: string) => {
-    router.replace(pathname, {locale: newLocale});
-  };
+  const handleLanguageChange = useCallback((newLocale: string) => {
+    if (newLocale === locale) return
 
-  const currentLanguage = languages.find((lang) => lang.code === locale);
+    const pathWithoutLocale = pathname.replace(
+      new RegExp(`^/(?:${LOCALES.join('|')})(?=/|$)`),
+      '',
+    ) || '/'
+
+    window.location.href = `/${newLocale}${pathWithoutLocale}`
+  }, [locale, pathname])
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="flex items-center gap-2"
+        >
           <Globe className="h-4 w-4" />
           <span className="uppercase">{locale}</span>
         </Button>
@@ -41,10 +52,13 @@ export function LanguageSwitcher() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
-            className="flex items-center gap-2 cursor-pointer"
+            className={`flex items-center gap-2 cursor-pointer ${
+              lang.code === locale ? 'bg-accent' : ''
+            }`}
           >
             <span>{lang.flag}</span>
             <span>{lang.label}</span>
+            {lang.code === locale && <span className="ml-auto text-xs">✓</span>}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

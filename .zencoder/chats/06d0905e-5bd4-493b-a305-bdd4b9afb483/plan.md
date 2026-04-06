@@ -70,7 +70,7 @@ Save to `c:\Users\PC\Luthfullah-website\luthfullah-website\.zencoder\chats\06d09
 10. [x] **Cart Drawer**: Implement `components/cart/CartDrawer.tsx` to view/manage selections.
 
 #### Phase 3: Checkout, Payments & Notifications
-11. [ ] **Checkout Page**: Create `app/[locale]/checkout/page.tsx` with gateway selection.
+11. [x] **Checkout Page**: Create `app/[locale]/checkout/page.tsx` with gateway selection.
 12. [ ] **Stripe & Paystack Integration**:
     - Implement API routes for Stripe Checkout and Paystack initialization.
     - Integrate payment buttons/flows on the checkout page.

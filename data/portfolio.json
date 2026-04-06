@@ -1,0 +1,55 @@
+[
+  {
+    "id": "p1",
+    "title": "Solar-Powered Community Mosque",
+    "description": "Delivered solar lighting, water harvesting, and worship space upgrades for 450 community members in rural West Africa.",
+    "location": "West Africa",
+    "category": "mosque",
+    "client": "Local Religious Council",
+    "cost": 52000,
+    "benefit": "Energy resilient worship space with sustainable water capture and community education support.",
+    "featuredImage": "/beautiful-mosque-architecture.jpg",
+    "completionDate": "2026-02-14",
+    "status": "completed",
+    "gallery": [
+      "/beautiful-mosque-architecture.jpg",
+      "/community-center-facility.jpg"
+    ],
+    "createdAt": "2026-02-15T10:00:00Z"
+  },
+  {
+    "id": "p2",
+    "title": "Modern Primary School Campus",
+    "description": "Built a six-classroom primary school with sanitation, clean water, and solar classrooms to support 320 children.",
+    "location": "Southeast Asia",
+    "category": "school",
+    "client": "Education Partners Network",
+    "cost": 76000,
+    "benefit": "Increased school attendance and safe learning environments for underserved communities.",
+    "featuredImage": "/modern-school-exterior.png",
+    "completionDate": "2026-03-10",
+    "status": "completed",
+    "gallery": [
+      "/modern-school-exterior.png",
+      "/water-well-facility.jpg"
+    ],
+    "createdAt": "2026-03-11T08:30:00Z"
+  },
+  {
+    "id": "p3",
+    "title": "Clean Water Well Network",
+    "description": "Installed three clean water wells and sanitation hubs for five villages, reducing waterborne illness and travel time.",
+    "location": "East Africa",
+    "category": "water",
+    "client": "Local Health Coalition",
+    "cost": 34000,
+    "benefit": "Safe water access for 2,400 people, supporting health and economic recovery.",
+    "featuredImage": "/water-well-facility.jpg",
+    "completionDate": "2026-01-22",
+    "status": "completed",
+    "gallery": [
+      "/water-well-facility.jpg",
+      "/community-center-facility.jpg"
+    ]
+  }
+]
