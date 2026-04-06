@@ -1,0 +1,9 @@
+services:
+  luthfullah-website:
+    image: nginx:alpine
+    container_name: luthfullah-container
+    restart: always
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    ports:
+      - "8081:80"  # Stays on 8081 to avoid OpenClaw
